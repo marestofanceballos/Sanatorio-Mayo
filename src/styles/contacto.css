@@ -1,0 +1,131 @@
+.contacto-section {
+  padding: 110px 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+/* TÍTULOS */
+.contacto-title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #1f2933;
+}
+
+.contacto-text {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #6b7280;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* CARDS */
+.contacto-card {
+  border: none;
+  border-radius: 20px;
+  background: #ffffff;
+  padding-top: 10px;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* línea superior elegante */
+.contacto-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #2f7d4f, #5fb38b);
+}
+
+.contacto-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* ICONOS */
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #e6f4ea, #d1fae5);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  transition: transform 0.3s ease;
+}
+
+.contacto-card:hover .icon-box {
+  transform: scale(1.1);
+}
+
+.icon-box i {
+  font-size: 30px;
+  color: #2f7d4f;
+}
+
+/* TEXTO */
+.contacto-card .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1f2933;
+}
+
+.contacto-card .card-text {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.contacto-phone {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 22px;
+}
+
+.contacto-email {
+  font-size: 16px;
+  word-break: break-word;
+  color: #374151;
+  margin-bottom: 22px;
+}
+
+/* BOTONES */
+.contacto-card .btn {
+  border-radius: 14px;
+  font-weight: 600;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.contacto-card .btn-success {
+  background: linear-gradient(135deg, #2f7d4f, #3fa97a);
+  border: none;
+}
+
+.contacto-card .btn-success:hover {
+  background: linear-gradient(135deg, #256b43, #2f7d4f);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .contacto-title {
+    font-size: 34px;
+  }
+
+  .contacto-text {
+    font-size: 16px;
+  }
+}
+
+
+
+

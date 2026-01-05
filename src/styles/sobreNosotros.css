@@ -1,0 +1,81 @@
+.sobre-section {
+  padding: 100px 0;
+}
+
+.sobre-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: #1f2d1f;
+}
+
+.sobre-section p {
+  color: #5f6f5f;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ================= IMAGEN PRINCIPAL ================= */
+.imagen-circular {
+  position: relative;
+  width: 460px;        /* 👈 MÁS GRANDE */
+  height: 460px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  /* aro doble elegante */
+  border: 10px solid #e9faf4;
+  outline: 5px solid #198754;
+
+  animation: float 6s ease-in-out infinite;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+}
+
+.imagen-circular img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DETALLE VERDE DECORATIVO */
+.overlay-verde {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 220px;
+  height: 220px;
+  background-color: rgba(25, 135, 84, 0.18);
+  border-radius: 50%;
+}
+
+/* ANIMACIÓN SUAVE */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .imagen-circular {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .imagen-circular {
+    width: 280px;
+    height: 280px;
+    outline: none;
+    border: none;
+    border-radius: 24px; /* 👈 queda moderna en mobile */
+  }
+}
+

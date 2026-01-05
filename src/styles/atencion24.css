@@ -1,0 +1,53 @@
+.atencion24 {
+  min-height: 75vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.atencion24-overlay {
+  min-height: 75vh;
+  background: linear-gradient(
+    rgba(0, 90, 80, 0.568),
+    rgba(0, 90, 80, 0.685)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.atencion24-content {
+  max-width: 900px;
+  text-align: center;
+  color: #fff;
+}
+
+.atencion24 h2 {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.atencion24 p {
+  font-size: 20px;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+.atencion24 .btn {
+  background: #ffffff;
+  color: #0f766e;
+  font-weight: 700;
+  padding: 14px 38px;
+  border-radius: 30px;
+  border: none;
+  transition: 0.3s;
+}
+
+.atencion24 .btn:hover {
+  transform: translateY(-3px);
+  background: #f0fdfa;
+}
+
+

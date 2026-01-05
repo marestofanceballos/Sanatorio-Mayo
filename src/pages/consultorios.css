@@ -1,0 +1,52 @@
+.consultorios-section {
+  padding: 100px 0;
+  background: #f8f9fa;
+}
+
+.consultorios-title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.consultorios-subtitle {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 50px;
+}
+
+.consultorio-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 35px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.consultorio-card h4 {
+  color: #2f7d4f;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.consultorio-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.consultorio-card li {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.6;
+}
+
+.consultorio-card li:last-child {
+  border-bottom: none;
+}
+
+.orden {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #6c757d;
+}

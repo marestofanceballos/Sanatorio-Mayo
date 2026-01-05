@@ -1,0 +1,223 @@
+/* ===== GENERAL ===== */
+.about-page {
+  background: linear-gradient(180deg, #f4fbf8, #ffffff);
+  padding: 80px 20px;
+  font-family: system-ui, sans-serif;
+}
+
+/* ===== HERO ===== */
+.about-hero {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-hero-text h1 {
+  font-size: 2.6rem;
+  color: #0f2f23;
+  margin-bottom: 20px;
+}
+
+.about-hero-text p {
+  font-size: 1.05rem;
+  color: #4f6b61;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ===== TABS ===== */
+.about-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: 1px solid #cceee4;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0a3d2e;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background: #00a87e;
+  color: white;
+  border-color: #00a87e;
+}
+
+.tab-content {
+  background: white;
+  padding: 20px 24px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ===== IMAGEN ===== */
+.about-hero-image img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* ================== VALORES EN LISTA ================== */
+.values-section {
+  margin-top: 80px;
+  padding: 60px 20px;
+  background-color: #e9faf4;
+  border-radius: 30px;
+}
+
+.values-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f5132;
+  margin-bottom: 40px;
+}
+
+/* LISTA */
+.values-list {
+  max-width: 900px;
+  margin: auto;
+  list-style: none;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ITEM */
+.values-list li {
+  background-color: white;
+  padding: 18px 22px;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f3d2b;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* CHECK */
+.values-list .check {
+  color: #00a87e;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* HOVER SUAVE */
+.values-list li:hover {
+  background-color: #00a87e;
+  color: white;
+  transform: translateX(6px);
+}
+
+.values-list li:hover .check {
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .values-list li {
+    font-size: 15px;
+  }
+}
+
+
+/* GRID */
+.values-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* CARD */
+.value-card {
+  background-color: #ffffff;
+  padding: 30px 26px;
+  border-radius: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+}
+
+/* ICONO */
+.value-card span {
+  width: 60px;
+  height: 60px;
+  background-color: #00a87e;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+/* TEXTO */
+.value-card p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f3d2b;
+  line-height: 1.6;
+}
+
+/* HOVER */
+.value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.value-card:hover span {
+  background-color: #198754;
+}
+
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-tabs {
+    justify-content: center;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+

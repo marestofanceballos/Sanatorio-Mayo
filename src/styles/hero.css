@@ -1,0 +1,63 @@
+/* ================= HERO ================= */
+.hero-section {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(
+      rgba(230, 238, 235, 0.753),
+      rgba(233, 250, 244, 0.842)
+    ),
+    url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+/* CONTENIDO */
+.hero-content {
+  max-width: 900px;
+  margin: auto;
+  padding-top: 120px;
+}
+
+/* TÍTULO */
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f2f23;
+  margin-bottom: 1.5rem;
+}
+
+/* TEXTO */
+.hero-text {
+  font-size: 1.15rem;
+  color: #4d665b;
+  max-width: 750px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.7;
+}
+
+/* BOTONES */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+}
+

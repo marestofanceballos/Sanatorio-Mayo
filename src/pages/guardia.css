@@ -1,0 +1,69 @@
+.guardia-page {
+  padding: 120px 0 80px;
+  background-color: #f7fbf9;
+}
+
+/* CARD */
+.guardia-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.guardia-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.guardia-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f3d2b;
+  margin: 0;
+}
+
+.guardia-icon {
+  font-size: 2.2rem;
+}
+
+/* TEXTO */
+.guardia-card p {
+  color: #5f6f5f;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* INFO */
+.guardia-info {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e0eee8;
+}
+
+.guardia-info p {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* IMAGEN */
+.guardia-img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .guardia-page {
+    padding-top: 100px;
+  }
+
+  .guardia-header h1 {
+    font-size: 1.6rem;
+  }
+}
+

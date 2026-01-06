@@ -1,42 +1,52 @@
+/* ===== SECCIÓN GENERAL ===== */
 .consultorios-section {
-  padding: 100px 0;
-  background: #f8f9fa;
+  padding: 120px 0 80px;
+  background-color: #f8f9fa;
 }
 
 .consultorios-title {
-  font-size: 42px;
-  font-weight: 800;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #198754;
   margin-bottom: 10px;
 }
 
 .consultorios-subtitle {
-  font-size: 18px;
+  font-size: 1rem;
   color: #6c757d;
   margin-bottom: 50px;
 }
 
+/* ===== CARD ===== */
 .consultorio-card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 35px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
   margin-bottom: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .consultorio-card h4 {
-  color: #2f7d4f;
+  font-size: 1.4rem;
   font-weight: 700;
+  color: #198754;
   margin-bottom: 20px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
 }
 
+/* ===== LISTA ===== */
 .consultorio-card ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .consultorio-card li {
   padding: 15px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.95rem;
+  color: #343a40;
   line-height: 1.6;
 }
 
@@ -44,9 +54,27 @@
   border-bottom: none;
 }
 
+.consultorio-card strong {
+  font-size: 1rem;
+  color: #212529;
+}
+
+/* ===== ORDEN DE LLEGADA ===== */
 .orden {
   display: inline-block;
-  margin-top: 5px;
-  font-size: 14px;
-  color: #6c757d;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc3545;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .consultorios-title {
+    font-size: 2rem;
+  }
+
+  .consultorio-card {
+    padding: 20px;
+  }
 }

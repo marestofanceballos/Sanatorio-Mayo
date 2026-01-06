@@ -9,10 +9,20 @@ import Hero from "./components/Hero"
 import SobreNosotros from "./components/SobreNosotros"
 import Informacion from "./components/Informacion"
 import Contacto from "./components/Contacto"
-import Atencion24 from "./components/Atencion24"   // ✅ NUEVO
+import Atencion24 from "./components/Atencion24"
 
 import SobreNosotrosPage from "./pages/SobreNosotrosPage"
-import ConsultoriosPage from "./pages/ConsultoriosPage"
+import GuardiaPage from "./pages/GuardiaPage"
+
+import TraumatologiaPage from "./pages/TraumatologiaPage"
+import CardiologiaPage from "./pages/CardiologiaPage"
+import PsicologiaPage from "./pages/PsicologiaPage"
+import CirugiaGeneralPage from "./pages/CirugiaGeneralPage"
+import GinecologiaPage from "./pages/GinecologiaPage"
+import DermatologiaPage from "./pages/DermatologiaPage"
+import ClinicaGeneralPage from "./pages/ClinicaGeneralPage"
+
+
 
 function App() {
   return (
@@ -21,7 +31,7 @@ function App() {
       <ScrollToHash />
 
       <Routes>
-        {/* PÁGINA PRINCIPAL */}
+        {/* HOME */}
         <Route
           path="/"
           element={
@@ -29,34 +39,42 @@ function App() {
               <Hero />
               <SobreNosotros />
               <Informacion />
-              <Atencion24 />   
+              <Atencion24 />
               <Contacto />
             </>
           }
         />
 
-        {/* PÁGINA SOBRE NOSOTROS */}
+        {/* SOBRE NOSOTROS */}
         <Route
           path="/sobre-nosotros"
           element={<SobreNosotrosPage />}
         />
 
-        {/* PÁGINA CONSULTORIOS EXTERNOS */}
+
+        {/* GUARDIA */}
         <Route
-          path="/consultorios"
-          element={<ConsultoriosPage />}
+          path="/guardia"
+          element={<GuardiaPage />}
         />
+
+        <Route path="/equipo-profesional/traumatologia" element={<TraumatologiaPage />}/>
+        <Route path="/cardiologia"element={<CardiologiaPage />}/>
+        <Route path="/psicologia"element={<PsicologiaPage />}/>
+        <Route path="/cirugia-general" element={<CirugiaGeneralPage />}/>
+        <Route path="/ginecologia" element={<GinecologiaPage />} />
+        <Route path="/dermatologia" element={<DermatologiaPage />} />
+        <Route path="/clinica-general" element={<ClinicaGeneralPage />} />
       </Routes>
 
       <Footer />
-
-      {/* BOTÓN FLOTANTE WHATSAPP */}
       <WhatsAppButton />
     </>
   )
 }
 
 export default App
+
 
 
 

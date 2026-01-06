@@ -5,7 +5,6 @@ function ScrollToHash() {
   const location = useLocation()
 
   useEffect(() => {
-    // 🔹 Si hay hash y NO es recarga
     if (location.hash) {
       const element = document.getElementById(
         location.hash.replace("#", "")
@@ -17,7 +16,6 @@ function ScrollToHash() {
         }, 100)
       }
     } else {
-      // 🔹 Siempre arriba
       window.scrollTo(0, 0)
     }
   }, [location])
@@ -26,6 +24,7 @@ function ScrollToHash() {
 }
 
 export default ScrollToHash
+
 
 
 

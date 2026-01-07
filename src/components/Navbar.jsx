@@ -63,6 +63,12 @@ function Navbar() {
               </Link>
             </li>
 
+            <li className="nav-item">
+               <Link className="nav-link" to="/instalaciones">
+               Instalaciones
+              </Link>
+           </li>
+
             {/* DROPDOWN EQUIPO PROFESIONAL */}
             <li className="nav-item dropdown">
               <span

@@ -22,6 +22,8 @@ import GinecologiaPage from "./pages/GinecologiaPage"
 import DermatologiaPage from "./pages/DermatologiaPage"
 import ClinicaGeneralPage from "./pages/ClinicaGeneralPage"
 
+import InstalacionesPage from "./pages/InstalacionesPage"
+
 
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
         <Route path="/ginecologia" element={<GinecologiaPage />} />
         <Route path="/dermatologia" element={<DermatologiaPage />} />
         <Route path="/clinica-general" element={<ClinicaGeneralPage />} />
+
+        <Route path="/instalaciones" element={<InstalacionesPage />} />
       </Routes>
 
       <Footer />

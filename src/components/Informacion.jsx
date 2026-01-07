@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import "../styles/informacion.css"
 
 function Informacion() {
@@ -26,7 +25,6 @@ function Informacion() {
       title: "Equipo Profesional",
       description:
         "Médicos especialistas con amplia trayectoria y actualización permanente.",
-      link: "/consultorios",
     },
   ]
 
@@ -53,15 +51,6 @@ function Informacion() {
 
                   <h5 className="card-title">{feature.title}</h5>
                   <p className="card-text">{feature.description}</p>
-
-                  {feature.link && (
-                    <Link
-                      to={feature.link}
-                      className="btn btn-outline-success mt-3"
-                    >
-                      Ver consultorios
-                    </Link>
-                  )}
                 </div>
               </div>
             </div>
@@ -73,6 +62,7 @@ function Informacion() {
 }
 
 export default Informacion
+
 
 
 

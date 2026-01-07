@@ -11,10 +11,10 @@ function SobreNosotros() {
           <div className="col-md-6 mb-4 d-flex justify-content-center">
             <div className="imagen-circular">
               <img
-                src="https://i.postimg.cc/xCf0sc8r/IMG-7339.jpg"
+                src="https://i.postimg.cc/D0GHtpFN/sanatorio.jpg"
                 alt="Sanatorio Vida Salud"
               />
-              <div className="overlay-verde"></div>
+            
             </div>
           </div>
 

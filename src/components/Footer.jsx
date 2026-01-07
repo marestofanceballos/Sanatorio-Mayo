@@ -5,22 +5,27 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-container">
 
-        <p className="footer-text">
-          © {new Date().getFullYear()} Sanatorio Mayo. Todos los derechos reservados.
-        </p>
+        {/* IZQUIERDA - INFO */}
+        <div className="footer-info">
+          <p className="footer-text">
+            © {new Date().getFullYear()} Sanatorio Mayo. Todos los derechos reservados.
+          </p>
 
+          <p className="footer-text footer-item">
+            <i className="bi bi-geo-alt"></i>
+            24 de Septiembre 1544, Concepción, Tucumán
+          </p>
+
+          <p className="footer-text footer-item">
+            <i className="bi bi-envelope"></i>
+            sanatoriomayo1544@gmail.com
+          </p>
+        </div>
+
+        {/* CENTRO - REDES */}
         <div className="footer-social">
           <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <i className="bi bi-facebook"></i>
-          </a>
-
-          <a
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/sanatorio_mayo/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -29,9 +34,12 @@ function Footer() {
           </a>
         </div>
 
-        <p className="footer-text">
-          Atención médica de calidad con calidez humana
-        </p>
+        {/* DERECHA - FRASE */}
+        <div className="footer-slogan">
+          <p className="footer-text">
+            Atención médica de calidad con calidez humana
+          </p>
+        </div>
 
       </div>
     </footer>
@@ -39,5 +47,7 @@ function Footer() {
 }
 
 export default Footer
+
+
 
 

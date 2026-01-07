@@ -1,17 +1,15 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import "../styles/navbar.css"
 
 function Navbar() {
-  const location = useLocation()
-
   return (
-    <nav className="navbar navbar-expand-lg fixed-top custom-navbar">
+    <nav className="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
       <div className="container">
 
-        {/* LOGO → SIEMPRE A INICIO */}
-        <Link className="navbar-brand d-flex align-items-center" to="/">
+        {/* LOGO */}
+        <Link className="navbar-brand" to="/">
           <img
-            src="https://i.postimg.cc/3wN0S54H/Diseno-sin-titulo.png"
+            src="https://i.postimg.cc/yYvJsZjR/Logosanatorio.jpg"
             alt="Sanatorio Mayo"
             className="navbar-logo"
           />
@@ -23,6 +21,9 @@ function Navbar() {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -31,46 +32,91 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
 
-            {/* INICIO */}
+            {/* LINKS PRINCIPALES */}
             <li className="nav-item">
-              <Link
-                className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
-                to="/"
-              >
+              <NavLink className="nav-link" to="/">
                 Inicio
-              </Link>
+              </NavLink>
             </li>
 
-            {/* SOBRE NOSOTROS */}
             <li className="nav-item">
-              {location.pathname === "/" ? (
-                /* EN HOME → baja a sección */
-                <Link className="nav-link" to="/#sobre-nosotros">
-                  Sobre Nosotros
-                </Link>
-              ) : (
-                /* EN OTRA PÁGINA → va a página nueva */
-                <Link
-                  className={`nav-link ${location.pathname === "/sobre-nosotros" ? "active" : ""}`}
-                  to="/sobre-nosotros"
-                >
-                  Sobre Nosotros
-                </Link>
-              )}
+              <NavLink className="nav-link" to="/sobre-nosotros">
+                Sobre Nosotros
+              </NavLink>
             </li>
 
-            {/* INFORMACIÓN → SIEMPRE VUELVE A HOME Y BAJA */}
             <li className="nav-item">
               <Link className="nav-link" to="/#informacion">
                 Información
               </Link>
             </li>
 
-            {/* CONTACTO → SIEMPRE VUELVE A HOME Y BAJA */}
             <li className="nav-item">
-              <Link className="btn btn-contacto nav-link" to="/#contacto">
+              <NavLink className="nav-link" to="/guardia">
+                Guardia
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/#contacto">
                 Contacto
               </Link>
+            </li>
+
+            {/* DROPDOWN EQUIPO PROFESIONAL */}
+            <li className="nav-item dropdown">
+              <span
+                className="nav-link dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Equipo Profesional
+              </span>
+
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                  <NavLink className="dropdown-item" to="/cardiologia">
+                    Cardiología
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/traumatologia">
+                    Traumatología
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/psicologia">
+                    Psicología
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/cirugia-general">
+                    Cirugía General
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/ginecologia">
+                    Ginecología
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/dermatologia">
+                    Dermatología
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink className="dropdown-item" to="/clinica-general">
+                    Clínica General
+                  </NavLink>
+                </li>
+              </ul>
             </li>
 
           </ul>
@@ -81,6 +127,9 @@ function Navbar() {
 }
 
 export default Navbar
+
+
+
 
 
 

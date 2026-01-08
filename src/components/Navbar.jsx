@@ -31,6 +31,7 @@ function Navbar() {
         {/* LINKS */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
+   
 
             {/* LINKS PRINCIPALES */}
             <li className="nav-item">
@@ -51,23 +52,45 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/guardia">
-                Guardia
-              </NavLink>
-            </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/#contacto">
                 Contacto
               </Link>
             </li>
+    
 
-            <li className="nav-item">
-               <Link className="nav-link" to="/instalaciones">
-               Instalaciones
-              </Link>
-           </li>
+{/* DROPDOWN TRABAJÁ CON NOSOTROS */}
+<li className="nav-item dropdown">
+  <span
+    className="nav-link dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Trabajá con nosotros
+  </span>
+
+  <ul className="dropdown-menu dropdown-menu-end">
+    <li>
+      <NavLink className="dropdown-item" to="/trabaja-con-nosotros/cv">
+        Dejanos tu CV
+      </NavLink>
+    </li>
+
+    {/* Opcionales */}
+    <li>
+      <NavLink className="dropdown-item" to="/trabaja-con-nosotros/busquedas">
+        Búsquedas activas
+      </NavLink>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
 
             {/* DROPDOWN EQUIPO PROFESIONAL */}
             <li className="nav-item dropdown">

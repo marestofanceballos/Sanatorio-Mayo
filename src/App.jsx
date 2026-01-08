@@ -42,6 +42,8 @@ function App() {
               <SobreNosotros />
               <Informacion />
               <Atencion24 />
+              <GuardiaPage/>
+              <InstalacionesPage/>
               <Contacto />
             </>
           }
@@ -54,11 +56,6 @@ function App() {
         />
 
 
-        {/* GUARDIA */}
-        <Route
-          path="/guardia"
-          element={<GuardiaPage />}
-        />
 
         <Route path="/equipo-profesional/traumatologia" element={<TraumatologiaPage />}/>
         <Route path="/cardiologia"element={<CardiologiaPage />}/>

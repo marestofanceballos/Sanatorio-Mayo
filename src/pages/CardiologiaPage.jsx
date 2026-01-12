@@ -1,40 +1,57 @@
 import "../pages/consultorios.css"
 
-function CardiologiaPage() {
-  return (
-    <section className="consultorios-section">
-      <div className="container">
+//              AGREGADO DE DOCTORES               //
+const doctores = [
+  {
+    id: 1,
+    nombre: "Dr. Acosta Sergio",
+    horario: "Lunes a Viernes – desde 17 hs",
+    telefono: "3865-526704",
+    foto: null,
+  },
+  {
+    id: 2,
+    nombre: "Dr. Ledesma Emiliano",
+    horario: "Martes, Jueves y Viernes – desde 16 hs",
+    telefono: "3865-202148",
+    foto: null,
+  },
+];
 
-        <h2 className="consultorios-title text-center">
-          Cardiología
+
+export default function CardiologiaPage() {
+  return (
+    <section className="cardiologia-page">
+       <h2 className="consultorios-title text-center">
+          Cardiologia
         </h2>
 
-        <p className="consultorios-subtitle text-center">
-          Sanatorio Mayo S.A.
-        </p>
+      <div className="cards-wrapper">
+        <div className="cards-grid">
+          {doctores.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
+              <div className="doctor-avatar">
+                {doc.foto && <img src={doc.foto} alt={doc.nombre} />}
+              </div>
 
-        {/* ================= CARDIOLOGÍA ================= */}
-        <div className="consultorio-card">
-          <h4>Especialistas</h4>
+              <h3>{doc.nombre}</h3>
 
-          <ul>
-            <li>
-              <strong>Dr. Acosta Sergio</strong><br />
-              Lunes a Viernes – desde 17 hs<br />
-              📞 3865-526704
-            </li>
+              <p className="doctor-schedule">
+                {doc.horario}
+              </p>
 
-            <li>
-              <strong>Dr. Ledesma Emiliano</strong><br />
-              Martes, Jueves y Viernes – desde 16 hs<br />
-              📞 3865-202148
-            </li>
-          </ul>
+              <span className="doctor-phone">
+                📞 {doc.telefono}
+              </span>
+
+              <button className="btn-turno">
+                Solicitar turno
+              </button>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
-  )
+  );
 }
 
-export default CardiologiaPage

@@ -1,35 +1,52 @@
 import "../pages/consultorios.css"
 
+
+const doctoresTraumatologia = [
+  {
+    id: 1,
+    nombre: "Dr. Juri Rafael",
+    horario: "Jueves – desde 19 hs",
+    nota: "Orden de llegada",
+    telefono: null,
+    foto: null,
+  },
+];
+
+
 function TraumatologiaPage() {
   return (
-    <section className="consultorios-section">
-      <div className="container">
-
-        <h2 className="consultorios-title text-center">
-          Traumatología
+    <section className="cardiologia-page">
+      {/* reutilizamos las mismas clases y estilos */}
+     <h2 className="consultorios-title text-center">
+          Traumatologia
         </h2>
 
-        <p className="consultorios-subtitle text-center">
-          Sanatorio Mayo S.A.
-        </p>
+      <div className="cards-wrapper">
+        <div className="cards-grid">
+          {doctoresTraumatologia.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
+              <div className="doctor-avatar">
+                {doc.foto && <img src={doc.foto} alt={doc.nombre} />}
+              </div>
 
-        <div className="consultorio-card">
-          <ul>
-            <li>
-              <strong>Dr. Juri Rafael</strong><br />
-              Jueves – desde 19 hs<br />
-              <span className="orden">Orden de llegada</span>
-            </li>
+              <h3>{doc.nombre}</h3>
 
-            <li>
-              <strong>Dr. Montenegro</strong><br />
-              Miércoles – desde 17 hs<br />
-              Sábados – desde 11 hs<br />
-              <span className="orden">Orden de llegada</span>
-            </li>
-          </ul>
+              <p className="doctor-schedule">
+                {doc.horario}
+              </p>
+
+              {doc.nota && (
+                <p className="doctor-note">
+                  {doc.nota}
+                </p>
+              )}
+
+              <button className="btn-turno">
+                Solicitar turno
+              </button>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   )

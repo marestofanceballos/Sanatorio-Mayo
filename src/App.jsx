@@ -50,13 +50,7 @@ function App() {
         />
 
         {/* SOBRE NOSOTROS */}
-        <Route
-          path="/sobre-nosotros"
-          element={<SobreNosotrosPage />}
-        />
-
-
-
+        <Route path="/sobre-nosotros"element={<SobreNosotrosPage />}/>
         <Route path="/equipo-profesional/traumatologia" element={<TraumatologiaPage />}/>
         <Route path="/cardiologia"element={<CardiologiaPage />}/>
         <Route path="/psicologia"element={<PsicologiaPage />}/>
@@ -64,9 +58,9 @@ function App() {
         <Route path="/ginecologia" element={<GinecologiaPage />} />
         <Route path="/dermatologia" element={<DermatologiaPage />} />
         <Route path="/clinica-general" element={<ClinicaGeneralPage />} />
-
+        <Route path="/traumatologia" element= {<TraumatologiaPage />} />
         <Route path="/instalaciones" element={<InstalacionesPage />} />
-      </Routes>
+         </Routes>
 
       <Footer />
       <WhatsAppButton />

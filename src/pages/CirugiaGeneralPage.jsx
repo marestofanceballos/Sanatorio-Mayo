@@ -1,49 +1,63 @@
 import "../pages/consultorios.css"
 
+const doctoresCirugia = [
+  {
+    nombre: "Dr. Carrizo Gustavo",
+    horario: "Miércoles – 16 a 20 hs",
+    telefono: null,
+    observacion: "Orden de llegada",
+  },
+  {
+    nombre: "Dr. Pintor Guillermo",
+    horario: "Martes – 10 a 12 hs",
+    telefono: "3865-431305",
+  },
+  {
+    nombre: "Dr. Pintor Rodrigo",
+    horario: "Martes – desde 16 hs",
+    telefono: "381-2060458",
+  },
+  {
+    nombre: "Dr. Yapur Gustavo",
+    horario: "Lunes – 17 a 20 hs",
+    telefono: "381-3306111",
+  },
+];
+
+
 function CirugiaGeneralPage() {
   return (
-    <section className="consultorios-section">
-      <div className="container">
-
-        <h2 className="consultorios-title text-center">
-          Cirugía General
+   <section className="especialidad-page">
+     <h2 className="consultorios-title text-center">
+          Cirugia General
         </h2>
 
-        <p className="consultorios-subtitle text-center">
-          Sanatorio Mayo S.A.
-        </p>
+      <div className="cards-grid">
+        {doctoresCirugia.map((doc, index) => (
+          <div className="doctor-card" key={index}>
+            {/* Avatar */}
+            <div className="doctor-avatar" />
 
-        {/* ================= CIRUGÍA GENERAL ================= */}
-        <div className="consultorio-card">
-          <h4>Especialistas</h4>
+            {/* Nombre */}
+            <h3>{doc.nombre}</h3>
 
-          <ul>
-            <li>
-              <strong>Dr. Carrizo Gustavo</strong><br />
-              Miércoles – 16 a 20 hs<br />
-              <span className="orden">Orden de llegada</span>
-            </li>
+            {/* Horario */}
+            <p>{doc.horario}</p>
 
-            <li>
-              <strong>Dr. Pintor Guillermo</strong><br />
-              Martes – 10 a 12 hs<br />
-              📞 3865-431305
-            </li>
+            {/* Observación */}
+            {doc.observacion && (
+              <p className="orden-llegada">{doc.observacion}</p>
+            )}
 
-            <li>
-              <strong>Dr. Pintor Rodrigo</strong><br />
-              Martes – desde 16 hs<br />
-              📞 381-2060458
-            </li>
+            {/* Teléfono */}
+            {doc.telefono && (
+              <p className="telefono">📞 {doc.telefono}</p>
+            )}
 
-            <li>
-              <strong>Dr. Yapur Gustavo</strong><br />
-              Lunes – 17 a 20 hs<br />
-              📞 381-3306111
-            </li>
-          </ul>
-        </div>
-
+            {/* Botón */}
+            <button className="btn-turno">Solicitar turno</button>
+          </div>
+        ))}
       </div>
     </section>
   )

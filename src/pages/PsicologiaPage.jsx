@@ -1,31 +1,53 @@
 import "../pages/consultorios.css"
 
+
+const doctoresPsicologia = [
+  {
+    id: 1,
+    nombre: "Lic. Palacios Florencia",
+    horario: "Jueves – 16 a 20 hs",
+    telefono: "3865-520997",
+    foto: null,
+  },
+];
+
+
+
 function PsicologiaPage() {
   return (
-    <section className="consultorios-section">
-      <div className="container">
-
-        <h2 className="consultorios-title text-center">
+    <section className="especialidad-page">
+      {/* Título principal */}
+    <h2 className="consultorios-title text-center">
           Psicología
         </h2>
 
-        <p className="consultorios-subtitle text-center">
-          Sanatorio Mayo S.A.
-        </p>
+      {/* Especialistas */}
+      <div className="cards-wrapper">
+        <h2 className="section-title">Especialistas</h2>
 
-        {/* ================= PSICOLOGÍA ================= */}
-        <div className="consultorio-card">
-          <h4>Especialistas</h4>
+        <div className="cards-grid">
+          {doctoresPsicologia.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
+              <div className="doctor-avatar">
+                {doc.foto && <img src={doc.foto} alt={doc.nombre} />}
+              </div>
 
-          <ul>
-            <li>
-              <strong>Lic. Palacios Florencia</strong><br />
-              Jueves – 16 a 20 hs<br />
-              📞 3865-520997
-            </li>
-          </ul>
+              <h3>{doc.nombre}</h3>
+
+              <p className="doctor-schedule">
+                {doc.horario}
+              </p>
+
+              <p className="doctor-phone">
+                📞 {doc.telefono}
+              </p>
+
+              <button className="btn-turno">
+                Solicitar turno
+              </button>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   )

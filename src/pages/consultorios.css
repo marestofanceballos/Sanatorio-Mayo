@@ -35,6 +35,123 @@
   padding-bottom: 10px;
 }
 
+/*CARDIOLOGIA ESTILOS*/
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.doctor-card {
+  background: #e9f2ee;
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Avatar */
+.doctor-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #7fb7b1;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Nombre */
+.doctor-card h3 {
+  font-size: 18px;
+  color: #1f3d3a;
+  min-height: 48px;
+  margin-bottom: 10px;
+}
+
+/* Horarios */
+.doctor-schedule {
+  font-size: 14px;
+  color: #4f6f6b;
+  margin-bottom: 12px;
+}
+
+/* Teléfono */
+.doctor-phone {
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Botón */
+.btn-turno {
+  margin-top: auto;
+  background: #6f7773;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-turno:hover {
+  background: #4f5f5b;
+}
+
+
+.cards-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;   /* 👈 centra horizontalmente */
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+  justify-items: center; /* 👈 centra cada card */
+}
+
+.cardiologia-page {
+  padding: 60px 20px 120px; /* 👈 espacio abajo */
+}
+
+.doctor-card {
+  width: 100%;
+  max-width: 340px;
+}
+
+/*TRAUMATOLOGIA ESTILOS*/
+
+.doctor-note {
+  font-size: 14px;
+  color: #1f7a5c;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+
+.section-title {
+  margin-bottom: 32px;
+}
+
+.especialidad-page {
+  padding-top: 120px;
+  padding-bottom: 160px;
+}
+
+.especialidad-page {
+  padding-top: 120px; /* separa del navbar */
+  padding-bottom: 120px; /* separa del footer */
+}
+
+
 /* ===== LISTA ===== */
 .consultorio-card ul {
   list-style: none;

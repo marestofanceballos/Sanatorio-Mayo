@@ -1,43 +1,38 @@
 import "../pages/consultorios.css"
 
-
 const doctoresTraumatologia = [
   {
-    id: 1,
     nombre: "Dr. Juri Rafael",
     horario: "Jueves – desde 19 hs",
-    nota: "Orden de llegada",
-    telefono: null,
-    foto: null,
+    observacion: "Orden de llegada",
   },
 ];
 
-
 function TraumatologiaPage() {
   return (
-    <section className="cardiologia-page">
-      {/* reutilizamos las mismas clases y estilos */}
-     <h2 className="consultorios-title text-center">
-          Traumatologia
-        </h2>
+    <div className="especialidad-page">
 
-      <div className="cards-wrapper">
+      <div className="text-center mb-5">
+        <h1 className="especialidad-title">Traumatología</h1>
+        <p className="especialidad-subtitle">Sanatorio Mayo S.A.</p>
+      </div>
+
+      <div className="especialidad-container">
+        <h2 className="section-title">Especialistas</h2>
+        <hr />
+
         <div className="cards-grid">
-          {doctoresTraumatologia.map((doc) => (
-            <div className="doctor-card" key={doc.id}>
-              <div className="doctor-avatar">
-                {doc.foto && <img src={doc.foto} alt={doc.nombre} />}
-              </div>
+          {doctoresTraumatologia.map((doc, index) => (
+            <div className="doctor-card" key={index}>
+              <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
 
-              <p className="doctor-schedule">
-                {doc.horario}
-              </p>
+              <p className="doctor-horario">{doc.horario}</p>
 
-              {doc.nota && (
-                <p className="doctor-note">
-                  {doc.nota}
+              {doc.observacion && (
+                <p className="doctor-observacion">
+                  {doc.observacion}
                 </p>
               )}
 
@@ -48,8 +43,10 @@ function TraumatologiaPage() {
           ))}
         </div>
       </div>
-    </section>
+
+    </div>
   )
 }
 
 export default TraumatologiaPage
+

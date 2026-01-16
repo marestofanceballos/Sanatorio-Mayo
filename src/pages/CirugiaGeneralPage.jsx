@@ -4,7 +4,6 @@ const doctoresCirugia = [
   {
     nombre: "Dr. Carrizo Gustavo",
     horario: "Miércoles – 16 a 20 hs",
-    telefono: null,
     observacion: "Orden de llegada",
   },
   {
@@ -24,43 +23,51 @@ const doctoresCirugia = [
   },
 ];
 
-
 function CirugiaGeneralPage() {
   return (
-   <section className="especialidad-page">
-     <h2 className="consultorios-title text-center">
-          Cirugia General
-        </h2>
+    <div className="especialidad-page">
 
-      <div className="cards-grid">
-        {doctoresCirugia.map((doc, index) => (
-          <div className="doctor-card" key={index}>
-            {/* Avatar */}
-            <div className="doctor-avatar" />
-
-            {/* Nombre */}
-            <h3>{doc.nombre}</h3>
-
-            {/* Horario */}
-            <p>{doc.horario}</p>
-
-            {/* Observación */}
-            {doc.observacion && (
-              <p className="orden-llegada">{doc.observacion}</p>
-            )}
-
-            {/* Teléfono */}
-            {doc.telefono && (
-              <p className="telefono">📞 {doc.telefono}</p>
-            )}
-
-            {/* Botón */}
-            <button className="btn-turno">Solicitar turno</button>
-          </div>
-        ))}
+      {/* TÍTULO */}
+      <div className="text-center mb-5">
+        <h1 className="especialidad-title">Cirugía General</h1>
+        <p className="especialidad-subtitle">Sanatorio Mayo S.A.</p>
       </div>
-    </section>
+
+      {/* CONTENEDOR */}
+      <div className="especialidad-container">
+        <h2 className="section-title">Especialistas</h2>
+        <hr />
+
+        <div className="cards-grid">
+          {doctoresCirugia.map((doc, index) => (
+            <div className="doctor-card" key={index}>
+              <div className="doctor-avatar" />
+
+              <h3>{doc.nombre}</h3>
+
+              <p className="doctor-horario">{doc.horario}</p>
+
+              {doc.telefono && (
+                <p className="doctor-phone">📞 {doc.telefono}</p>
+              )}
+
+              {doc.observacion && (
+                <p className="doctor-observacion">
+                  {doc.observacion}
+                </p>
+              )}
+
+              <button className="btn-turno">
+                Solicitar turno
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
   )
 }
 
 export default CirugiaGeneralPage
+

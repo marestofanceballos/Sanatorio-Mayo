@@ -1,65 +1,114 @@
-/* ===== SECCIÓN GENERAL ===== */
-.consultorios-section {
-  padding: 120px 0 80px;
+/* ===============================
+   BASE GENERAL
+================================ */
+.especialidad-page,
+.cardiologia-page {
+  padding-top: 110px;        /* espacio navbar */
+  padding-bottom: 140px;
   background-color: #f8f9fa;
 }
 
-.consultorios-title {
+/* ===============================
+   TÍTULOS
+================================ */
+.consultorios-title,
+.especialidad-title {
   font-size: 2.4rem;
   font-weight: 700;
   color: #198754;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
-.consultorios-subtitle {
+.especialidad-subtitle {
   font-size: 1rem;
   color: #6c757d;
-  margin-bottom: 50px;
+  text-align: center;
 }
 
-/* ===== CARD ===== */
-.consultorio-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 50px 0 10px;
+  text-align: center;
+  color: #1f3d3a;
 }
 
-.consultorio-card h4 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #198754;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #e9ecef;
-  padding-bottom: 10px;
+/* ===============================
+   SEPARADOR ELEGANTE (REEMPLAZA HR)
+================================ */
+.especialidad-container hr {
+  border: none;
+  height: 2px;
+  width: 90px;
+  margin: 16px auto 50px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #198754,
+    transparent
+  );
+  opacity: 0.45;
 }
 
-/*CARDIOLOGIA ESTILOS*/
+/* ===============================
+   CONTENEDORES
+================================ */
+.cards-wrapper,
+.especialidad-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===============================
+   GRID DE CARDS
+================================ */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
 }
 
+/* ===============================
+   CARD DOCTOR
+================================ */
 .doctor-card {
-  background: #e9f2ee;
-  border-radius: 18px;
-  padding: 24px 20px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 36px 28px;
+  width: 100%;
+  max-width: 340px;
   text-align: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Avatar */
+.doctor-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   AVATAR
+================================ */
 .doctor-avatar {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: #7fb7b1;
-  margin-bottom: 16px;
+  background: linear-gradient(135deg, #8bc4bc, #cfe7e3);
+  margin-bottom: 22px;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .doctor-avatar img {
@@ -68,130 +117,80 @@
   object-fit: cover;
 }
 
-/* Nombre */
+/* ===============================
+   TEXTOS
+================================ */
 .doctor-card h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #1f3d3a;
-  min-height: 48px;
-  margin-bottom: 10px;
-}
-
-/* Horarios */
-.doctor-schedule {
-  font-size: 14px;
-  color: #4f6f6b;
   margin-bottom: 12px;
 }
 
-/* Teléfono */
+.doctor-horario,
+.doctor-schedule {
+  font-size: 0.95rem;
+  color: #4f6f6b;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
 .doctor-phone {
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-
-/* Botón */
-.btn-turno {
-  margin-top: auto;
-  background: #6f7773;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 22px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.btn-turno:hover {
-  background: #4f5f5b;
-}
-
-
-.cards-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;   /* 👈 centra horizontalmente */
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 32px;
-  justify-items: center; /* 👈 centra cada card */
-}
-
-.cardiologia-page {
-  padding: 60px 20px 120px; /* 👈 espacio abajo */
-}
-
-.doctor-card {
-  width: 100%;
-  max-width: 340px;
-}
-
-/*TRAUMATOLOGIA ESTILOS*/
-
-.doctor-note {
-  font-size: 14px;
-  color: #1f7a5c;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 16px;
 }
 
-
-.section-title {
-  margin-bottom: 32px;
-}
-
-.especialidad-page {
-  padding-top: 120px;
-  padding-bottom: 160px;
-}
-
-.especialidad-page {
-  padding-top: 120px; /* separa del navbar */
-  padding-bottom: 120px; /* separa del footer */
-}
-
-
-/* ===== LISTA ===== */
-.consultorio-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.consultorio-card li {
-  padding: 15px 0;
-  border-bottom: 1px solid #e9ecef;
-  font-size: 0.95rem;
-  color: #343a40;
-  line-height: 1.6;
-}
-
-.consultorio-card li:last-child {
-  border-bottom: none;
-}
-
-.consultorio-card strong {
-  font-size: 1rem;
-  color: #212529;
-}
-
-/* ===== ORDEN DE LLEGADA ===== */
-.orden {
-  display: inline-block;
-  margin-top: 6px;
+.doctor-observacion,
+.doctor-note,
+.orden-llegada {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #dc3545;
+  color: #1f7a5c;
+  margin-bottom: 18px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===============================
+   BOTÓN
+================================ */
+.btn-turno {
+  margin-top: auto;
+  background: #198754;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.btn-turno:hover {
+  background: #146c43;
+  transform: scale(1.03);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 768px) {
-  .consultorios-title {
+  .especialidad-page,
+  .cardiologia-page {
+    padding-top: 140px;
+    padding-bottom: 100px;
+  }
+
+  .consultorios-title,
+  .especialidad-title {
     font-size: 2rem;
   }
 
-  .consultorio-card {
-    padding: 20px;
+  .doctor-card {
+    padding: 28px 22px;
+  }
+
+  .doctor-avatar {
+    width: 100px;
+    height: 100px;
   }
 }

@@ -1,48 +1,47 @@
 import "../pages/consultorios.css"
 
-//              AGREGADO DE DOCTORES               //
 const doctores = [
   {
     id: 1,
     nombre: "Dr. Acosta Sergio",
     horario: "Lunes a Viernes – desde 17 hs",
     telefono: "3865-526704",
-    foto: null,
   },
   {
     id: 2,
     nombre: "Dr. Ledesma Emiliano",
     horario: "Martes, Jueves y Viernes – desde 16 hs",
     telefono: "3865-202148",
-    foto: null,
   },
 ];
 
-
 export default function CardiologiaPage() {
   return (
-    <section className="cardiologia-page">
-       <h2 className="consultorios-title text-center">
-          Cardiologia
-        </h2>
+    <div className="especialidad-page">
 
-      <div className="cards-wrapper">
+      {/* TÍTULO */}
+      <div className="text-center mb-5">
+        <h1 className="especialidad-title">Cardiología</h1>
+        <p className="especialidad-subtitle">Sanatorio Mayo S.A.</p>
+      </div>
+
+      {/* CONTENEDOR */}
+      <div className="especialidad-container">
+        <h2 className="section-title">Especialistas</h2>
+        <hr />
+
         <div className="cards-grid">
           {doctores.map((doc) => (
             <div className="doctor-card" key={doc.id}>
-              <div className="doctor-avatar">
-                {doc.foto && <img src={doc.foto} alt={doc.nombre} />}
-              </div>
+              <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
 
-              <p className="doctor-schedule">
-                {doc.horario}
-              </p>
+              <p className="doctor-horario">{doc.horario}</p>
 
-              <span className="doctor-phone">
+              <p className="doctor-phone">
                 📞 {doc.telefono}
-              </span>
+              </p>
 
               <button className="btn-turno">
                 Solicitar turno
@@ -51,7 +50,9 @@ export default function CardiologiaPage() {
           ))}
         </div>
       </div>
-    </section>
+
+    </div>
   );
 }
+
 

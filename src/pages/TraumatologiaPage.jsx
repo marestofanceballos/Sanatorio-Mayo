@@ -1,34 +1,33 @@
-import "../pages/consultorios.css"
+import "../pages/consultorios.css";
+import { doctores } from "../pages/data/doctores";
+import { Link } from "react-router-dom";
 
-const doctoresTraumatologia = [
-  {
-    nombre: "Dr. Juri Rafael",
-    horario: "Jueves – desde 19 hs",
-    observacion: "Orden de llegada",
-  },
-];
+export default function TraumatologiaPage() {
 
-function TraumatologiaPage() {
+  const traumatologos = doctores.filter(
+    (doc) => doc.especialidad === "traumatologia"
+  );
+
   return (
     <div className="especialidad-page">
 
+      {/* TÍTULO */}
       <div className="text-center mb-5">
         <h1 className="especialidad-title">Traumatología</h1>
         <p className="especialidad-subtitle">Sanatorio Mayo S.A.</p>
       </div>
 
+      {/* CONTENEDOR */}
       <div className="especialidad-container">
         <h2 className="section-title">Especialistas</h2>
         <hr />
 
         <div className="cards-grid">
-          {doctoresTraumatologia.map((doc, index) => (
-            <div className="doctor-card" key={index}>
+          {traumatologos.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
               <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
-
-              <p className="doctor-horario">{doc.horario}</p>
 
               {doc.observacion && (
                 <p className="doctor-observacion">
@@ -36,17 +35,19 @@ function TraumatologiaPage() {
                 </p>
               )}
 
-              <button className="btn-turno">
+              <Link
+                to={`/turno/${doc.id}`}
+                className="btn-turno"
+              >
                 Solicitar turno
-              </button>
+              </Link>
             </div>
           ))}
         </div>
       </div>
 
     </div>
-  )
+  );
 }
 
-export default TraumatologiaPage
 

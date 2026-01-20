@@ -24,7 +24,7 @@ import ClinicaGeneralPage from "./pages/ClinicaGeneralPage";
 import DejanosTuCV from "./pages/DejanosTuCV";
 import InstalacionesPage from "./pages/InstalacionesPage";
 import BusquedasActivas from "./pages/BusquedasActivas";
-
+import TurnoPage from "./pages/TurnoPage";
 function App() {
   return (
     <>
@@ -64,6 +64,7 @@ function App() {
         <Route path="/instalaciones" element={<InstalacionesPage />} />
         <Route path="/trabaja-con-nosotros/cv" element={<DejanosTuCV />} />
         <Route path="/trabaja-con-nosotros/busquedas"element={<BusquedasActivas />}/>
+        <Route path="/turno/:id" element={<TurnoPage />} />
       </Routes>
 
       <Footer />

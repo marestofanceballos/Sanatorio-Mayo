@@ -1,32 +1,14 @@
-import "../pages/consultorios.css"
+import "../pages/consultorios.css";
+import { doctores } from "../pages/data/doctores";
+import { Link } from "react-router-dom";
 
-const doctoresCirugia = [
-  {
-    nombre: "Dr. Carrizo Gustavo",
-    horario: "Miércoles – 16 a 20 hs",
-    observacion: "Orden de llegada",
-  },
-  {
-    nombre: "Dr. Pintor Guillermo",
-    horario: "Martes – 10 a 12 hs",
-    telefono: "3865-431305",
-  },
-  {
-    nombre: "Dr. Pintor Rodrigo",
-    horario: "Martes – desde 16 hs",
-    telefono: "381-2060458",
-  },
-  {
-    nombre: "Dr. Yapur Gustavo",
-    horario: "Lunes – 17 a 20 hs",
-    telefono: "381-3306111",
-  },
-];
+export default function CirugiaGeneralPage() {
+  const cirujanos = doctores.filter(
+    (doc) => doc.especialidad === "cirugia"
+  );
 
-function CirugiaGeneralPage() {
   return (
     <div className="especialidad-page">
-
       {/* TÍTULO */}
       <div className="text-center mb-5">
         <h1 className="especialidad-title">Cirugía General</h1>
@@ -39,13 +21,11 @@ function CirugiaGeneralPage() {
         <hr />
 
         <div className="cards-grid">
-          {doctoresCirugia.map((doc, index) => (
-            <div className="doctor-card" key={index}>
+          {cirujanos.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
               <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
-
-              <p className="doctor-horario">{doc.horario}</p>
 
               {doc.telefono && (
                 <p className="doctor-phone">📞 {doc.telefono}</p>
@@ -57,17 +37,18 @@ function CirugiaGeneralPage() {
                 </p>
               )}
 
-              <button className="btn-turno">
+              <Link
+                to={`/turno/${doc.id}`}
+                className="btn-turno"
+              >
                 Solicitar turno
-              </button>
+              </Link>
             </div>
           ))}
         </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default CirugiaGeneralPage
 

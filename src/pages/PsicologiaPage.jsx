@@ -1,14 +1,13 @@
-import "../pages/consultorios.css"
+import "../pages/consultorios.css";
+import { doctores } from "../pages/data/doctores";
+import { Link } from "react-router-dom";
 
-const doctoresPsicologia = [
-  {
-    nombre: "Lic. Palacios Florencia",
-    horario: "Jueves – 16 a 20 hs",
-    telefono: "3865-520997",
-  },
-];
+export default function PsicologiaPage() {
 
-function PsicologiaPage() {
+  const psicologos = doctores.filter(
+    (doc) => doc.especialidad === "psicologia"
+  );
+
   return (
     <div className="especialidad-page">
 
@@ -22,27 +21,29 @@ function PsicologiaPage() {
         <hr />
 
         <div className="cards-grid">
-          {doctoresPsicologia.map((doc, index) => (
-            <div className="doctor-card" key={index}>
+          {psicologos.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
               <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
 
-              <p className="doctor-horario">{doc.horario}</p>
+              {doc.telefono && (
+                <p className="doctor-phone">📞 {doc.telefono}</p>
+              )}
 
-              <p className="doctor-phone">📞 {doc.telefono}</p>
-
-              <button className="btn-turno">
+              <Link
+                to={`/turno/${doc.id}`}
+                className="btn-turno"
+              >
                 Solicitar turno
-              </button>
+              </Link>
             </div>
           ))}
         </div>
       </div>
 
     </div>
-  )
+  );
 }
 
-export default PsicologiaPage
 

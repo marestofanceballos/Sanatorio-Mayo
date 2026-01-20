@@ -1,11 +1,11 @@
-import { Link, NavLink } from "react-router-dom"
-import "../styles/navbar.css"
+import { Link, NavLink } from "react-router-dom";
+import "../styles/navbar.css";
+
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
       <div className="container">
-
         {/* LOGO */}
         <Link className="navbar-brand" to="/">
           <img
@@ -31,8 +31,6 @@ function Navbar() {
         {/* LINKS */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
-   
-
             {/* LINKS PRINCIPALES */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
@@ -52,45 +50,44 @@ function Navbar() {
               </Link>
             </li>
 
-
             <li className="nav-item">
               <Link className="nav-link" to="/#contacto">
                 Contacto
               </Link>
             </li>
-    
 
-{/* DROPDOWN TRABAJÁ CON NOSOTROS */}
-<li className="nav-item dropdown">
-  <span
-    className="nav-link dropdown-toggle"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    Trabajá con nosotros
-  </span>
+            {/* DROPDOWN TRABAJÁ CON NOSOTROS */}
+            <li className="nav-item dropdown">
+              <span
+                className="nav-link dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Trabajá con nosotros
+              </span>
 
-  <ul className="dropdown-menu dropdown-menu-end">
-    <li>
-      <NavLink className="dropdown-item" to="/trabaja-con-nosotros/cv">
-        Dejanos tu CV
-      </NavLink>
-    </li>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/trabaja-con-nosotros/cv"
+                  >
+                    Dejanos tu CV
+                  </NavLink>
+                </li>
 
-    {/* Opcionales */}
-    <li>
-      <NavLink className="dropdown-item" to="/trabaja-con-nosotros/busquedas">
-        Búsquedas activas
-      </NavLink>
-    </li>
-  </ul>
-</li>
-
-
-
-
-
+                {/* Opcionales */}
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/trabaja-con-nosotros/busquedas"
+                  >
+                    Búsquedas activas
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
 
             {/* DROPDOWN EQUIPO PROFESIONAL */}
             <li className="nav-item dropdown">
@@ -147,21 +144,11 @@ function Navbar() {
                 </li>
               </ul>
             </li>
-
           </ul>
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
-
-
-
-
-
-
-
-
-
+export default Navbar;

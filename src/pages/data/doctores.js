@@ -5,7 +5,7 @@ export const doctores = [
     especialidad: "cardiologia",
     nombre: "Dr. Acosta Sergio",
     horarios: ["17:00", "17:30", "18:00"],
-    telefono: "3865-526704",
+    whatsapp: "5491123456789", // 👈 cuando te lo pasen,
   },
   {
     id: 2,

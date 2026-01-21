@@ -9,29 +9,13 @@
   text-align: center;
   color: #1f8b4c;
   font-size: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-h2 {
+.turno-page h2 {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 30px;
-  color: #1f2937;
-}
-
-
-/* Card principal */
-.turno-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-/* Títulos internos */
-.turno-section-title {
-  font-size: 22px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #1f2937;
 }
 
@@ -41,27 +25,23 @@ h2 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .horario-btn {
-  padding: 16px 26px;
-  font-size: 18px;
+  padding: 14px 24px;
+  font-size: 17px;
   border-radius: 12px;
   min-width: 100px;
   border: 2px solid #1f8b4c;
-  background-color: white;
+  background-color: #ffffff;
   color: #1f8b4c;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-.horario-btn:hover {
-  background-color: #1f8b4c;
-  color: white;
-}
-
+.horario-btn:hover,
 .horario-btn.activo {
   background-color: #1f8b4c;
   color: white;
@@ -70,13 +50,12 @@ h2 {
 /* ====== FORMULARIO ====== */
 .turno-form {
   max-width: 420px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-
+  gap: 16px;
   background: #ffffff;
-  padding: 28px;
+  padding: 26px;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
@@ -85,7 +64,7 @@ h2 {
   padding: 14px;
   border-radius: 10px;
   border: 1px solid #d1d5db;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .turno-form input:focus {
@@ -96,12 +75,12 @@ h2 {
 /* Botón confirmar */
 .turno-form button {
   margin-top: 10px;
-  padding: 16px;
+  padding: 15px;
   border-radius: 12px;
   border: none;
   background: #1f8b4c;
   color: white;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease;
@@ -111,16 +90,21 @@ h2 {
   background: #166a3a;
 }
 
+
+
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .turno-title {
     font-size: 28px;
   }
 
+  .turno-page h2 {
+    font-size: 20px;
+  }
+
   .horario-btn {
-    font-size: 16px;
-    padding: 14px 20px;
-    min-width: 90px;
+    font-size: 15px;
+    padding: 12px 18px;
   }
 }
 
@@ -129,7 +113,11 @@ h2 {
     padding: 22px;
   }
 
-  .horarios-grid {
-    gap: 12px;
+  .modal {
+    padding: 24px 20px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
   }
 }

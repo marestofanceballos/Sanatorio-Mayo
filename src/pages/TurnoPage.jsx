@@ -11,6 +11,7 @@ export default function TurnoPage() {
   );
 
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
+  const [enviando, setEnviando] = useState(false);
 
   const [formData, setFormData] = useState({
     pacienteNombre: "",
@@ -33,10 +34,14 @@ export default function TurnoPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (enviando) return;
+    setEnviando(true);
+
     const turno = {
       doctorId: doctor.id,
       doctorNombre: doctor.nombre,
       horario: horarioSeleccionado,
+      estado: "pendiente",
       ...formData
     };
 
@@ -48,25 +53,38 @@ export default function TurnoPage() {
       });
 
       if (res.ok) {
-        // 👉 ABRIR WHATSAPP
-        const whatsappNumber = doctor.whatsapp || "5491112345678";
+        const whatsappNumber = doctor.whatsapp;
 
-        const mensaje = `Hola, solicité un turno:
-Doctor: ${doctor.nombre}
-Horario: ${horarioSeleccionado}
-Paciente: ${formData.pacienteNombre}
-DNI: ${formData.dni}
-Teléfono: ${formData.telefono}`;
+        if (!whatsappNumber) {
+          alert("Este doctor no tiene WhatsApp configurado");
+          setEnviando(false);
+          return;
+        }
+
+        const mensaje = `🩺 NUEVO TURNO SOLICITADO
+
+👨‍⚕️ Doctor: ${doctor.nombre}
+🕒 Horario: ${horarioSeleccionado}
+
+🙋 Paciente: ${formData.pacienteNombre}
+📄 DNI: ${formData.dni}
+📞 Teléfono: ${formData.telefono}
+
+👉 Por favor responder:
+✅ CONFIRMADO
+❌ CANCELADO
+`;
 
         const link = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
-
         window.open(link, "_blank");
       } else {
         alert("Error al crear el turno");
+        setEnviando(false);
       }
     } catch (error) {
       console.error(error);
       alert("Error de conexión");
+      setEnviando(false);
     }
   };
 
@@ -124,8 +142,10 @@ Teléfono: ${formData.telefono}`;
               required
             />
 
-            <button type="submit">
-              Confirmar turno ({horarioSeleccionado})
+            <button type="submit" disabled={enviando}>
+              {enviando
+                ? "Enviando turno..."
+                : `Confirmar turno (${horarioSeleccionado})`}
             </button>
           </form>
         </>

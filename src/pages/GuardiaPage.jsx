@@ -28,7 +28,7 @@ function GuardiaPage() {
 
               <div className="guardia-info">
                 <p><strong>🚑 Urgencias:</strong> las 24 hs</p>
-                <p><strong>🏥 Internación:</strong> Sanatorio del Norte</p>
+                <p><strong>🏥 Internación:</strong> Sanatorio de Mayo</p>
                 <p><strong>📞 Teléfono:</strong> +54 3865 857008</p>
               </div>
             </div>

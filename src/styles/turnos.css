@@ -90,6 +90,9 @@
   background: #166a3a;
 }
 
+.turno-page {
+  min-height: calc(100vh - 230px);
+}
 
 
 /* ====== RESPONSIVE ====== */

@@ -7,7 +7,7 @@
 .guardia-card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 35px;
+  padding: 37px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
@@ -51,7 +51,7 @@
 
 /* IMAGEN */
 .guardia-img {
-  max-width: 100%;
+  max-width: 90%;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }

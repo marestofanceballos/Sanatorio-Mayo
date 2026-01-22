@@ -34,16 +34,19 @@ function Footer() {
           </a>
         </div>
 
-        {/* DERECHA - FRASE */}
         <div className="footer-slogan">
-          <p className="footer-text">
-            Atención médica de calidad con calidez humana
-          </p>
-        </div>
+          <strong> Atención médica de calidad con calidez humana</strong>
+       <p className="footer-sub">
+        Equipo profesional de médicos y especialistas
+       </p>
+      </div>
+
 
       </div>
     </footer>
   )
+ 
+  
 }
 
 export default Footer

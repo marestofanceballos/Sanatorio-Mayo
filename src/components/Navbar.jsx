@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 
-
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
@@ -90,15 +89,10 @@ function Navbar() {
             </li>
 
             {/* DROPDOWN EQUIPO PROFESIONAL */}
-            <li className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Equipo Profesional
-              </span>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/turnos">
+                Turnos
+              </NavLink>
 
               <ul className="dropdown-menu dropdown-menu-end">
                 <li>

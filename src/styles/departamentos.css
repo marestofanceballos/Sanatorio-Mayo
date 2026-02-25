@@ -1,0 +1,60 @@
+.departamentos-wrapper {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* TITULO */
+.departamentos-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #198754; /* VERDE SANATORIO */
+  margin-bottom: 10px;
+}
+
+/* SUBTITULO */
+.departamentos-subtitle {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+.departamentos-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+/* TARJETAS */
+.departamento-card {
+  width: 100%;
+  max-width: 720px;
+  padding: 32px;
+
+  background: #ffffff;
+  border-radius: 16px;
+  text-decoration: none;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: #198754;
+
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+
+  transition: all 0.25s ease;
+}
+
+/* HOVER PREMIUM */
+.departamento-card:hover {
+  transform: translateY(-5px);
+
+  background: #198754;
+  color: white;
+
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}

@@ -25,6 +25,9 @@ import DejanosTuCV from "./pages/DejanosTuCV";
 import InstalacionesPage from "./pages/InstalacionesPage";
 import BusquedasActivas from "./pages/BusquedasActivas";
 import TurnoPage from "./pages/TurnoPage";
+import DoctoresPage from "./pages/DoctoresPage";
+import TurnosPage from "./pages/TurnosPage";
+
 function App() {
   return (
     <>
@@ -63,8 +66,15 @@ function App() {
         <Route path="/traumatologia" element={<TraumatologiaPage />} />
         <Route path="/instalaciones" element={<InstalacionesPage />} />
         <Route path="/trabaja-con-nosotros/cv" element={<DejanosTuCV />} />
-        <Route path="/trabaja-con-nosotros/busquedas"element={<BusquedasActivas />}/>
+        <Route
+          path="/trabaja-con-nosotros/busquedas"
+          element={<BusquedasActivas />}
+        />
         <Route path="/turno/:id" element={<TurnoPage />} />
+        <Route path="/turnos" element={<TurnosPage />} />
+
+        <Route path="/doctores/:especialidad" element={<DoctoresPage />} />
+        
       </Routes>
 
       <Footer />

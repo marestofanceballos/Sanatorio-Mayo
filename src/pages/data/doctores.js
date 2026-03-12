@@ -4,6 +4,7 @@ export const doctores = [
     id: 1,
     especialidad: "cardiologia",
     nombre: "Dr. Acosta Sergio",
+    mongoId: "69b09c66b940365f3d34427d", // 👈 ID REAL de Acosta
     horarios: ["17:00", "17:30", "18:00"],
     whatsapp: "5491123456789", // 👈 cuando te lo pasen,
   },
@@ -97,11 +98,12 @@ export const doctores = [
   // PSICOLOGÍA
    {
     id: 13,
-    especialidad: "psicologia",
+    mongoId: "69a5a11ad26b980bb01cf6a2", // 👈 ID REAL de Palacios
     nombre: "Lic. Palacios Florencia",
-    horarios: ["Jueves – 16 a 20 hs"],
-    telefono: "3865-520997",
-  },
+    especialidad: "psicologia",
+    diasAtencion: [2,4], // 👈 martes y jueves
+    horarios: ["09:00", "10:00", "11:00"]
+  } ,
 
   // TRAUMATOLOGÍA
   {

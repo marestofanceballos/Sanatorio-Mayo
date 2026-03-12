@@ -1,0 +1,65 @@
+/* CONTENEDOR GENERAL */
+.register-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:70vh;
+  background:#f3f4f6;
+  padding:40px 20px;
+}
+
+/* TARJETA */
+.register-card{
+  background:white;
+  padding:35px;
+  border-radius:16px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TITULO */
+.register-title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:25px;
+  color:#1f8b4c;
+}
+
+/* FORMULARIO */
+.register-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+/* INPUTS */
+.register-form input{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-size:14px;
+}
+
+.register-form input:focus{
+  outline:none;
+  border-color:#1f8b4c;
+}
+
+/* BOTON */
+.register-form button{
+  margin-top:10px;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  background:#1f8b4c;
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+
+.register-form button:hover{
+  background:#166a3a;
+}

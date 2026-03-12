@@ -1,11 +1,23 @@
 import "../pages/consultorios.css";
-import { doctores } from "../pages/data/doctores";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function PsicologiaPage() {
 
+  const [doctores, setDoctores] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/api/doctor-auth/doctors")
+      .then(res => res.json())
+      .then(data => {
+        console.log("DOCTORES:", data); // 👈 para ver si llegan
+        setDoctores(data);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
   const psicologos = doctores.filter(
-    (doc) => doc.especialidad === "psicologia"
+    doc => doc.especialidad === "psicologia"
   );
 
   return (
@@ -21,29 +33,37 @@ export default function PsicologiaPage() {
         <hr />
 
         <div className="cards-grid">
+
+          {psicologos.length === 0 && (
+            <p>No hay psicólogos cargados</p>
+          )}
+
           {psicologos.map((doc) => (
-            <div className="doctor-card" key={doc.id}>
+            <div className="doctor-card" key={doc._id}>
+
               <div className="doctor-avatar" />
 
               <h3>{doc.nombre}</h3>
 
-              {doc.telefono && (
-                <p className="doctor-phone">📞 {doc.telefono}</p>
-              )}
+              <p>Horarios:</p>
+              {doc.horarios?.map((hora, i) => (
+                <p key={i}>{hora}</p>
+              ))}
 
               <Link
-                to={`/turno/${doc.id}`}
+                to={`/turno/${doc._id}`}
                 className="btn-turno"
               >
                 Solicitar turno
               </Link>
+
             </div>
           ))}
+
         </div>
       </div>
 
     </div>
   );
 }
-
 

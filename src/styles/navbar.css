@@ -10,7 +10,7 @@
 
 /* LOGO */
 .navbar-logo {
-  height: 55px;
+  height: 150px;
   width: auto;
   object-fit: contain;
 }
@@ -26,7 +26,7 @@
 
 /* HOVER */
 .navbar-nav .nav-link:hover {
-  color: #00a87e !important;
+  color: #1E5C38 !important;
   transform: translateY(-1px);
 }
 
@@ -38,7 +38,7 @@
   bottom: -6px;
   width: 0%;
   height: 2px;
-  background-color: #00a87e;
+  background-color: #1B3D2F;
   transition: width 0.3s ease;
 }
 

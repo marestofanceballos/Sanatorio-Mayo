@@ -8,7 +8,7 @@ function Navbar() {
         {/* LOGO */}
         <Link className="navbar-brand" to="/">
           <img
-            src="https://i.postimg.cc/yYvJsZjR/Logosanatorio.jpg"
+            src="https://i.postimg.cc/NfT0QjNY/LOGO-VERSIONES-SIN-FONDO-05.png"
             alt="Sanatorio Mayo"
             className="navbar-logo"
           />

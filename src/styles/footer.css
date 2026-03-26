@@ -1,7 +1,7 @@
 .footer {
-  background: linear-gradient(180deg, #e6f4ea 0%, #d1fae5 100%);
-  padding: 70px 0; /* 👈 MÁS ALTURA */
-  border-top: 1px solid #c7e6d8;
+  background: linear-gradient(180deg, #E6F4EA 0%, #DFF3EA 100%);
+  padding: 70px 0;
+  border-top: 1px solid rgba(30, 92, 56, 0.15);
 }
 
 /* CONTENEDOR */
@@ -30,13 +30,13 @@
 
 .footer-item i {
   font-size: 16px;
-  color: #0f766e;
+  color: #1E5C38; /* verde principal */
 }
 
 /* TEXTO */
 .footer-text {
   font-size: 14px;
-  color: #065f46;
+  color: #2C3E35; /* gris texto */
   margin: 0;
   font-weight: 500;
 }
@@ -50,21 +50,21 @@
 .footer-social a {
   width: 48px;
   height: 48px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0f766e;
+  color: #1E5C38;
   font-size: 22px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
-  transform: translateY(-4px);
-  background-color: #0f766e;
-  color: #ffffff;
+  transform: translateY(-5px) scale(1.05);
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  color: #FFFFFF;
 }
 
 /* FRASE DERECHA */
@@ -79,15 +79,15 @@
 /* FRASE PRINCIPAL */
 .footer-slogan strong {
   font-size: 15px;
-  color: #064e3b;
+  color: #1B3D2F;
   font-weight: 700;
 }
 
 /* FRASE SECUNDARIA */
 .footer-sub {
   font-size: 15px;
-  color: #064e3b;
-  font-weight: 700;
+  color: #2C3E35;
+  font-weight: 600;
 }
 
 /* MOBILE */

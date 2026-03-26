@@ -1,16 +1,16 @@
 .instalaciones-section {
   padding: 120px 0 80px;
-  background: linear-gradient(180deg, #f4fdf9, #ffffff);
+  background: linear-gradient(180deg, #E6F4EA, #FFFFFF); /* verde suave → blanco */
 }
 
 .instalaciones-section h2 {
   font-weight: 700;
-  color: #0a6b4e;
+  color: #1B3D2F; /* verde oscuro */
   margin-bottom: 10px;
 }
 
 .instalaciones-subtitle {
-  color: #555;
+  color: #2C3E35; /* gris texto */
   font-size: 1.05rem;
   margin-bottom: 60px;
 }
@@ -20,14 +20,17 @@
   margin-bottom: 70px;
 }
 
-.instalaciones-item h4 {
-  color: #0a6b4e;
-  font-weight: 600;
-  margin-bottom: 15px;
+.instalaciones-item h4::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #2D7A4F;
+  margin-top: 8px;
 }
 
 .instalaciones-item p {
-  color: #555;
+  color: #2C3E35; /* gris texto */
   font-size: 1rem;
   line-height: 1.6;
 }

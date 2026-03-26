@@ -1,6 +1,6 @@
 /* ===== GENERAL ===== */
 .about-page {
-  background: linear-gradient(180deg, #f4fbf8, #ffffff);
+  background: linear-gradient(180deg, #F8FFFC, #FFFFFF);
   padding: 80px 20px;
   font-family: system-ui, sans-serif;
 }
@@ -17,13 +17,13 @@
 
 .about-hero-text h1 {
   font-size: 2.6rem;
-  color: #0f2f23;
+  color: #1B3D2F;
   margin-bottom: 20px;
 }
 
 .about-hero-text p {
   font-size: 1.05rem;
-  color: #4f6b61;
+  color: #2C3E35;
   margin-bottom: 30px;
   line-height: 1.6;
 }
@@ -38,26 +38,26 @@
 .tab {
   padding: 12px 22px;
   border-radius: 30px;
-  border: 1px solid #cceee4;
-  background: white;
+  border: 1px solid rgba(30, 92, 56, 0.2);
+  background: #FFFFFF;
   cursor: pointer;
   font-weight: 600;
-  color: #0a3d2e;
+  color: #1B3D2F;
   transition: 0.3s;
 }
 
 .tab.active {
-  background: #00a87e;
-  color: white;
-  border-color: #00a87e;
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 .tab-content {
-  background: white;
+  background: #FFFFFF;
   padding: 20px 24px;
   border-radius: 18px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  color: #444;
+  color: #2C3E35;
   line-height: 1.6;
 }
 
@@ -73,7 +73,7 @@
 .values-section {
   margin-top: 80px;
   padding: 60px 20px;
-  background-color: #e9faf4;
+  background-color: #E6F4EA;
   border-radius: 30px;
 }
 
@@ -81,7 +81,7 @@
   text-align: center;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #0f5132;
+  color: #1B3D2F;
   margin-bottom: 40px;
 }
 
@@ -99,7 +99,7 @@
 
 /* ITEM */
 .values-list li {
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 18px 22px;
   border-radius: 16px;
 
@@ -109,7 +109,7 @@
 
   font-size: 16px;
   font-weight: 500;
-  color: #1f3d2b;
+  color: #2C3E35;
 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -117,7 +117,7 @@
 
 /* CHECK */
 .values-list .check {
-  color: #00a87e;
+  color: #2D7A4F;
   font-size: 20px;
   line-height: 1.2;
   margin-top: 2px;
@@ -125,22 +125,14 @@
 
 /* HOVER SUAVE */
 .values-list li:hover {
-  background-color: #00a87e;
-  color: white;
+  background-color: #1E5C38;
+  color: #FFFFFF;
   transform: translateX(6px);
 }
 
 .values-list li:hover .check {
-  color: white;
+  color: #FFFFFF;
 }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .values-list li {
-    font-size: 15px;
-  }
-}
-
 
 /* GRID */
 .values-grid {
@@ -153,7 +145,7 @@
 
 /* CARD */
 .value-card {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   padding: 30px 26px;
   border-radius: 24px;
 
@@ -170,8 +162,8 @@
 .value-card span {
   width: 60px;
   height: 60px;
-  background-color: #00a87e;
-  color: white;
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  color: #FFFFFF;
 
   display: flex;
   align-items: center;
@@ -186,7 +178,7 @@
 .value-card p {
   font-size: 16px;
   font-weight: 500;
-  color: #1f3d2b;
+  color: #2C3E35;
   line-height: 1.6;
 }
 
@@ -197,10 +189,8 @@
 }
 
 .value-card:hover span {
-  background-color: #198754;
+  background: linear-gradient(135deg, #1B3D2F, #1E5C38);
 }
-
-
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
@@ -217,7 +207,6 @@
     grid-template-columns: 1fr;
   }
 }
-
 
 
 

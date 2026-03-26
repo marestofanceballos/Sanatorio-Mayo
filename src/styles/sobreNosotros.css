@@ -6,11 +6,11 @@
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
-  color: #1f2d1f;
+  color: #1B3D2F; /* verde oscuro */
 }
 
 .sobre-section p {
-  color: #5f6f5f;
+  color: #2C3E35; /* gris texto */
   line-height: 1.8;
   font-size: 1.05rem;
 }
@@ -24,15 +24,15 @@
   overflow: hidden;
 
   /* aro elegante */
-  border: 10px solid #e9faf4;
-  outline: 4px solid #198754;
+  border: 10px solid #E6F4EA; /* verde muy suave */
+  outline: 4px solid #1E5C38; /* verde principal */
 
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 
   animation: float 6s ease-in-out infinite;
-  background: #fff;
+  background: #FFFFFF; /* blanco */
 }
 
 .imagen-circular img {
@@ -68,4 +68,3 @@
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   }
 }
-

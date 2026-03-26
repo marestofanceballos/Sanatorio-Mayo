@@ -27,7 +27,9 @@ import BusquedasActivas from "./pages/BusquedasActivas";
 import TurnoPage from "./pages/TurnoPage";
 import DoctoresPage from "./pages/DoctoresPage";
 import TurnosPage from "./pages/TurnosPage";
-
+import DoctorPanel from "./pages/DoctorPanel";
+import DoctorLogin from "./pages/DoctorLogin";
+import DoctorRegister from "./pages/DoctorRegister";
 function App() {
   return (
     <>
@@ -72,8 +74,11 @@ function App() {
         />
         <Route path="/turno/:id" element={<TurnoPage />} />
         <Route path="/turnos" element={<TurnosPage />} />
-
+        
         <Route path="/doctores/:especialidad" element={<DoctoresPage />} />
+        <Route path="/doctor/login" element={<DoctorLogin />} />
+        <Route path="/doctor-register" element={<DoctorRegister />} />
+        <Route path="/doctor/:doctorId" element={<DoctorPanel />} />
         
       </Routes>
 

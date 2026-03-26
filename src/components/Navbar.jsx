@@ -20,9 +20,6 @@ function Navbar() {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +27,7 @@ function Navbar() {
         {/* LINKS */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
-            {/* LINKS PRINCIPALES */}
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Inicio
@@ -55,89 +52,45 @@ function Navbar() {
               </Link>
             </li>
 
-            {/* DROPDOWN TRABAJÁ CON NOSOTROS */}
+            {/* TURNOS */}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/turnos">
+                Turnos
+              </NavLink>
+            </li>
+
+            {/* TRABAJÁ CON NOSOTROS */}
             <li className="nav-item dropdown">
               <span
                 className="nav-link dropdown-toggle"
                 role="button"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
               >
                 Trabajá con nosotros
               </span>
 
               <ul className="dropdown-menu dropdown-menu-end">
                 <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/trabaja-con-nosotros/cv"
-                  >
+                  <NavLink className="dropdown-item" to="/trabaja-con-nosotros/cv">
                     Dejanos tu CV
                   </NavLink>
                 </li>
 
-                {/* Opcionales */}
                 <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/trabaja-con-nosotros/busquedas"
-                  >
+                  <NavLink className="dropdown-item" to="/trabaja-con-nosotros/busquedas">
                     Búsquedas activas
                   </NavLink>
                 </li>
               </ul>
             </li>
 
-            {/* DROPDOWN EQUIPO PROFESIONAL */}
+            {/* 👨‍⚕️ INGRESO PROFESIONAL */}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/turnos">
-                Turnos
+              <NavLink className="nav-link" to="/doctor/login">
+                Ingreso Profesional
               </NavLink>
-
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li>
-                  <NavLink className="dropdown-item" to="/cardiologia">
-                    Cardiología
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/traumatologia">
-                    Traumatología
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/psicologia">
-                    Psicología
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/cirugia-general">
-                    Cirugía General
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/ginecologia">
-                    Ginecología
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/dermatologia">
-                    Dermatología
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/clinica-general">
-                    Clínica General
-                  </NavLink>
-                </li>
-              </ul>
             </li>
+
           </ul>
         </div>
       </div>

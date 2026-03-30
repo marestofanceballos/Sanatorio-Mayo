@@ -23,20 +23,9 @@ function SobreNosotros() {
             <h2 className="sobre-title">Sobre Nosotros</h2>
 
             <p>
-              En Sanatorio Vida Salud nos dedicamos a brindar atención médica de
-              excelencia con un enfoque humano y profesional.
-            </p>
-
-            <p>
-              Nuestro equipo está conformado por especialistas altamente
-              capacitados en diversas áreas de la medicina, comprometidos con el
-              bienestar de cada paciente.
-            </p>
-
-            <p>
-              Trabajamos con tecnología de última generación y protocolos
-              médicos actualizados, garantizando diagnósticos precisos y
-              tratamientos efectivos.
+              Este establecimiento sanatorial se encuentra emplazado en el corazón de la ciudad de concepcion, provincia de tucuman. Desde hace más de 60 años Somos protagonistas en la evolución del sistema de salud especialmente en el sur de nuestra provincia.
+Somos una institución que mira hacia adelante, con la misma fuerza con la que fuimos construyendo nuestro camino: responsabilidad calidez humana y una profunda conexión con nuestra comunidad. 
+Crecemos y nos transformamos día a día modernizando nuestras instalaciones, incorporando tecnología avanzada, ampliando servicios y sumando profesionales en permanente formación para brindar atención médica con compromiso, cercanía y respeto por cada paciente y su familia.
             </p>
 
             {/* 👉 BOTÓN QUE NAVEGA */}

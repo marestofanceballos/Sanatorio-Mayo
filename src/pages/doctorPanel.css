@@ -29,7 +29,7 @@
   color: #2C3E35;
 }
 
-/* BOTONES */
+/* BOTONES SUPERIORES */
 .doctor-panel-buttons {
   display: flex;
   justify-content: center;
@@ -76,11 +76,12 @@
 /* CARD TURNO */
 .turno-item {
   display: grid;
-  grid-template-columns: 120px 80px 1fr 60px;
+  grid-template-columns: 120px 80px 1fr auto;
   align-items: center;
+  gap: 15px;
   background: #F8FFFC;
   padding: 18px;
-  border-radius: 12px;
+  border-radius: 14px;
   border-left: 5px solid #1E5C38;
   transition: all 0.3s ease;
 }
@@ -108,20 +109,145 @@
   color: #2C3E35;
 }
 
-/* BOTÓN CANCELAR */
-.btn-cancelar {
-  background: #DC2626;
+/* ACCIONES */
+.acciones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* BOTÓN CONFIRMAR */
+.btn-confirmar {
+  background: #22c55e;
+  color: white;
   border: none;
-  color: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-confirmar:hover {
+  background: #16a34a;
+}
+
+/* BOTÓN RECHAZAR */
+.btn-rechazar {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-rechazar:hover {
+  background: #dc2626;
+}
+
+/* 🗑️ BOTÓN ELIMINAR (MEJORADO 🔥) */
+.btn-delete {
+  background: #fee2e2;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #dc2626;
+  font-size: 16px;
+
+  transition: all 0.25s ease;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(220, 38, 38, 0.4);
+}
+
+/* CAJA RECHAZO */
+.rechazo-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rechazo-box textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.rechazo-box button {
+  background: #ef4444;
+  color: white;
+  border: none;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  transition: 0.3s;
 }
 
-.btn-cancelar:hover {
-  background: #B91C1C;
-  transform: scale(1.05);
+/* ESTADOS */
+.turno-item.confirmado {
+  border-left: 5px solid #22c55e;
+  background: #ecfdf5;
+}
+
+.turno-item.rechazado {
+  border-left: 5px solid #ef4444;
+  background: #fef2f2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .doctor-panel-container {
+    padding: 25px;
+  }
+
+  .turno-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .turno-fecha,
+  .turno-hora {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .turno-hora {
+    font-size: 18px;
+  }
+
+  .acciones {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .btn-confirmar,
+  .btn-rechazar {
+    flex: 1;
+    text-align: center;
+  }
+
+  .doctor-panel-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-volver,
+  .btn-logout {
+    width: 100%;
+  }
 }

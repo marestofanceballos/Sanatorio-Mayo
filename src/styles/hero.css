@@ -1,40 +1,67 @@
-/* ================= HERO ================= */
+/* ================= HERO PRO LIMPIO ================= */
 .hero-section {
+  position: relative;
   min-height: 100vh;
+
   background-image:
-  linear-gradient(
-    rgba(255, 255, 255, 0.6),
-    rgba(255, 255, 255, 0.6)
-  ),
-  url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3");
+    linear-gradient(
+      rgba(15, 47, 37, 0.6),
+      rgba(15, 47, 37, 0.75)
+    ),
+    url("https://i.postimg.cc/s1dt6SMv/IMG-9187.png");
+
   background-size: cover;
-  background-position: center;
+  background-position: center top;
+  background-repeat: no-repeat;
+
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-/* CONTENIDO */
+/* SACAMOS cualquier overlay raro */
+.hero-section::after {
+  display: none;
+}
+
+/* CONTENIDO SIN CAJA */
 .hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 80px; /* 🔥 baja todo el bloque */
+
   max-width: 900px;
-  margin: auto;
-  padding-top: 120px;
+  text-align: center;
+  padding: 0 20px;
+
+  /* ❌ sacamos fondo */
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 0;
+
+  animation: fadeUp 1s ease;
 }
 
 /* TÍTULO */
 .hero-title {
   font-size: 3.2rem;
   font-weight: 800;
-  color: #1B3D2F; /* verde oscuro */
+  color: #ffffff;
   margin-bottom: 1.5rem;
+
+  /* 🔥 mejora lectura */
+  text-shadow: 0 6px 25px rgba(0,0,0,0.7);
 }
 
 /* TEXTO */
 .hero-text {
   font-size: 1.15rem;
-  color: #2C3E35; /* gris texto */
+  color: #e5e7eb;
   max-width: 750px;
   margin: 0 auto 2.5rem auto;
   line-height: 1.7;
+
+  text-shadow: 0 4px 15px rgba(0,0,0,0.6);
 }
 
 /* BOTONES */
@@ -48,16 +75,62 @@
 .hero-buttons .btn {
   padding: 12px 30px;
   border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-primary {
+  background: #22c55e;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+/* BOTÓN SECUNDARIO */
+.btn-outline {
+  border: 2px solid #22c55e;
+  color: #22c55e;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #22c55e;
+  color: white;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
 
   .hero-text {
     font-size: 1rem;
   }
-}
 
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+}

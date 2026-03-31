@@ -23,10 +23,12 @@ function SobreNosotros() {
             <h2 className="sobre-title">Sobre Nosotros</h2>
 
             <p>
-              Este establecimiento sanatorial se encuentra emplazado en el corazón de la ciudad de concepcion, provincia de tucuman. Desde hace más de 60 años Somos protagonistas en la evolución del sistema de salud especialmente en el sur de nuestra provincia.
-Somos una institución que mira hacia adelante, con la misma fuerza con la que fuimos construyendo nuestro camino: responsabilidad calidez humana y una profunda conexión con nuestra comunidad. 
-Crecemos y nos transformamos día a día modernizando nuestras instalaciones, incorporando tecnología avanzada, ampliando servicios y sumando profesionales en permanente formación para brindar atención médica con compromiso, cercanía y respeto por cada paciente y su familia.
-            </p>
+  Este establecimiento sanatorial se encuentra emplazado en el corazón de la ciudad de Concepción, provincia de Tucumán. Desde hace más de 60 años somos protagonistas en la evolución del sistema de salud, especialmente en el sur de nuestra provincia.
+
+  Somos una institución que mira hacia adelante, con la misma fuerza con la que fuimos construyendo nuestro camino: responsabilidad, calidez humana y una profunda conexión con nuestra comunidad.
+
+  Crecemos y nos transformamos día a día, modernizando nuestras instalaciones, incorporando tecnología avanzada, ampliando servicios y sumando profesionales en permanente formación, para brindar atención médica con compromiso, cercanía y respeto por cada paciente y su familia.
+</p>
 
             {/* 👉 BOTÓN QUE NAVEGA */}
             <Link

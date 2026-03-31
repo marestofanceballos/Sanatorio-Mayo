@@ -36,9 +36,8 @@ function Informacion() {
         </h2>
 
         <p className="informacion-text">
-          En Sanatorio Vida Salud brindamos atención médica de calidad,
-          combinando calidez humana y tecnología de vanguardia.
-        </p>
+  En Sanatorio Mayo brindamos atención médica de calidad, combinando calidez humana con tecnología de vanguardia.
+</p>
 
         <div className="row mt-5">
           {features.map((feature, index) => (

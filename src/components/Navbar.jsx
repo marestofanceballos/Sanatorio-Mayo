@@ -59,30 +59,6 @@ function Navbar() {
               </NavLink>
             </li>
 
-            {/* TRABAJÁ CON NOSOTROS */}
-            <li className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Trabajá con nosotros
-              </span>
-
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li>
-                  <NavLink className="dropdown-item" to="/trabaja-con-nosotros/cv">
-                    Dejanos tu CV
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink className="dropdown-item" to="/trabaja-con-nosotros/busquedas">
-                    Búsquedas activas
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
 
             {/* 👨‍⚕️ INGRESO PROFESIONAL */}
             <li className="nav-item">

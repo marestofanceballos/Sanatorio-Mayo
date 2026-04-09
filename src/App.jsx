@@ -30,6 +30,8 @@ import TurnosPage from "./pages/TurnosPage";
 import DoctorPanel from "./pages/DoctorPanel";
 import DoctorLogin from "./pages/DoctorLogin";
 import DoctorRegister from "./pages/DoctorRegister";
+import PostulacionPage from "./pages/PostulacionPage";
+
 function App() {
   return (
     <>
@@ -75,7 +77,7 @@ function App() {
         <Route path="/doctor/login" element={<DoctorLogin />} />
         <Route path="/doctor-register" element={<DoctorRegister />} />
         <Route path="/doctor/:doctorId" element={<DoctorPanel />} />
-        
+        <Route path="/postulacion" element={<PostulacionPage />} />
       </Routes>
 
       <Footer />

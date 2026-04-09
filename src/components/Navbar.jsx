@@ -67,11 +67,28 @@ function Navbar() {
               </NavLink>
             </li>
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/doctor/login" onClick={cerrarMenu}>
-                Ingreso Profesional
-              </NavLink>
-            </li>
+
+           {/* 💼 TRABAJÁ CON NOSOTROS */}
+<li className="nav-item">
+  <NavLink
+    className="nav-link"
+    to="/trabaja-con-nosotros/cv"
+    onClick={cerrarMenu}
+  >
+    Trabajá con nosotros
+  </NavLink>
+</li>
+
+{/* 👨‍⚕️ INGRESO PROFESIONAL */}
+<li className="nav-item">
+  <NavLink
+    className="nav-link"
+    to="/doctor/login"
+    onClick={cerrarMenu}
+  >
+    Ingreso Profesional
+  </NavLink>
+</li>
 
           </ul>
         </div>

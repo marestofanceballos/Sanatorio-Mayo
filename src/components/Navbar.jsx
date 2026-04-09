@@ -72,7 +72,7 @@ function Navbar() {
 <li className="nav-item">
   <NavLink
     className="nav-link"
-    to="/trabaja-con-nosotros/cv"
+    to="/postulacion"
     onClick={cerrarMenu}
   >
     Trabajá con nosotros

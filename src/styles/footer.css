@@ -90,28 +90,55 @@
   font-weight: 600;
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .footer {
-    padding: 60px 20px;
+    padding: 50px 20px;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 30px;
+    gap: 25px;
   }
 
   .footer-info {
     align-items: center;
+    gap: 15px;
+  }
+
+  /* 👇 cada item más ordenado */
+  .footer-item {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .footer-item i {
+    font-size: 18px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* 👇 espacio para que no quede todo pegado */
+  .footer-social {
+    margin: 10px 0;
   }
 
   .footer-slogan {
     align-items: center;
     text-align: center;
+    gap: 8px;
+  }
+
+  .footer-slogan strong {
+    font-size: 14px;
   }
 
   .footer-sub {
-    max-width: 100%;
+    font-size: 14px;
+    max-width: 90%;
   }
 }

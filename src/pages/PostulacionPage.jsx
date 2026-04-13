@@ -15,6 +15,7 @@ export default function PostulacionPage() {
   const [archivoNombre, setArchivoNombre] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -50,7 +51,7 @@ export default function PostulacionPage() {
     setArchivoNombre(file.name);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { nombre, fechaNacimiento, celular, email, dni, puesto } = form;
     if (!nombre || !fechaNacimiento || !celular || !email || !dni || !puesto) {
       setErrorMsg("Por favor completá todos los campos obligatorios.");
@@ -65,8 +66,43 @@ export default function PostulacionPage() {
       setErrorMsg("El correo electrónico no es válido.");
       return;
     }
+
     setErrorMsg("");
-    setEnviado(true);
+    setEnviando(true);
+
+    try {
+      console.log("Enviando datos...");
+      const data = new FormData();
+      data.append("nombre", nombre);
+      data.append("fechaNacimiento", fechaNacimiento);
+      data.append("celular", celular);
+      data.append("email", email);
+      data.append("dni", dni);
+      data.append("puesto", puesto);
+      data.append("tieneExperiencia", form.tieneExperiencia ? "true" : "false");
+      data.append("cv", archivo);
+
+      console.log("FormData armado, haciendo fetch...");
+
+      const res = await fetch("http://localhost:4000/api/cvs", {
+        method: "POST",
+        body: data,
+      });
+
+      console.log("Respuesta recibida:", res.status);
+
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.message || "Error al enviar.");
+      }
+
+      setEnviado(true);
+    } catch (err) {
+      console.log("Error capturado:", err);
+      setErrorMsg(err.message || "Ocurrió un error. Intentá nuevamente.");
+    } finally {
+      setEnviando(false);
+    }
   };
 
   const toggleExperiencia = () => {
@@ -254,8 +290,12 @@ export default function PostulacionPage() {
 
           {errorMsg && <p className="post-error">{errorMsg}</p>}
 
-          <button className="post-submit-btn" onClick={handleSubmit}>
-            Enviar postulación
+          <button
+            className="post-submit-btn"
+            onClick={handleSubmit}
+            disabled={enviando}
+          >
+            {enviando ? "Enviando..." : "Enviar postulación"}
           </button>
 
         </div>

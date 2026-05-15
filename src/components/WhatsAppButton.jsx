@@ -3,7 +3,7 @@ import "../styles/whatsapp.css"
 function WhatsAppButton() {
   return (
     <a
-      href="https://w.app/recepcionsanatoriomayo"
+      href="https://wa.me/5493865857008"
       className="whatsapp-float"
       target="_blank"
       rel="noopener noreferrer"

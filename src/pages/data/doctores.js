@@ -98,7 +98,7 @@ export const doctores = [
   // PSICOLOGÍA
    {
     id: 13,
-    mongoId: "69a5a11ad26b980bb01cf6a2", // 👈 ID REAL de Palacios
+    mongoId: "6a471bbe15160cbd7cb3b5b4", // 👈 ID REAL de Palacios
     nombre: "Lic. Palacios Florencia",
     especialidad: "psicologia",
     diasAtencion: [2,4], // 👈 martes y jueves

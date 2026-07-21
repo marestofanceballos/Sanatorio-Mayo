@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaCalendarAlt } from "react-icons/fa";
 import "../pages/doctorPanel.css";
 
 export default function DoctorPanel() {
 
   const [turnos, setTurnos] = useState([]);
-  const [motivo, setMotivo] = useState("");
+
+  const [modalAbierto, setModalAbierto] = useState(false);
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
+
+  const [nuevaFecha, setNuevaFecha] = useState("");
+  const [nuevoHorario, setNuevoHorario] = useState("");
 
   const doctorId = localStorage.getItem("doctorId");
   const doctorNombre = localStorage.getItem("doctorNombre");
@@ -16,7 +20,11 @@ export default function DoctorPanel() {
 
   const cargarTurnos = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/turnos/doctor/${doctorId}`);
+
+      const res = await fetch(
+        `http://localhost:4000/api/turnos/doctor/${doctorId}`
+      );
+
       const data = await res.json();
 
       const ordenados = data.sort((a, b) => {
@@ -33,48 +41,100 @@ export default function DoctorPanel() {
     }
   };
 
-  // ✅ CONFIRMAR + WHATSAPP
-  const confirmarTurno = async (turno) => {
-
-    await fetch(`http://localhost:4000/api/turnos/confirmar/${turno._id}`, {
-      method: "PUT"
-    });
-
-    const mensaje = `Hola ${turno.pacienteNombre}, tu turno fue confirmado para el día ${new Date(turno.fecha).toLocaleDateString()} a las ${turno.horario}. 📍 Sanatorio Mayo`;
-
-    const url = `https://wa.me/${turno.telefono}?text=${encodeURIComponent(mensaje)}`;
-
-    window.open(url, "_blank");
-
-    // 🔥 refresca lista
-    cargarTurnos();
-  };
-
-  // ❌ RECHAZAR
-  const rechazarTurno = async () => {
-
-    await fetch(`http://localhost:4000/api/turnos/rechazar/${turnoSeleccionado}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ motivo })
-    });
-
-    setMotivo("");
-    setTurnoSeleccionado(null);
-
-    cargarTurnos();
-  };
-
-  // 🗑️ ELIMINAR
   const eliminarTurno = async (id) => {
-    await fetch(`http://localhost:4000/api/turnos/${id}`, {
-      method: "DELETE"
-    });
+
+    const confirmar = window.confirm(
+      "¿Desea eliminar este turno?"
+    );
+
+    if (!confirmar) return;
+
+    await fetch(
+      `http://localhost:4000/api/turnos/${id}`,
+      {
+        method: "DELETE"
+      }
+    );
 
     cargarTurnos();
   };
+
+  const reprogramarTurno = (turno) => {
+
+  setTurnoSeleccionado(turno);
+
+  setNuevaFecha(turno.fecha);
+
+  setNuevoHorario(turno.horario);
+
+  setModalAbierto(true);
+
+};
+
+const guardarReprogramacion = async () => {
+
+  try {
+
+    const res = await fetch(
+      `http://localhost:4000/api/turnos/reprogramar/${turnoSeleccionado._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          fecha: nuevaFecha,
+          horario: nuevoHorario,
+          doctorId: doctorId
+        })
+      }
+    );
+
+
+    const data = await res.json();
+
+
+    if (!res.ok) {
+      alert(data.message);
+      return;
+    }
+
+
+    // actualizar lista de turnos
+    cargarTurnos();
+
+
+    // cerrar modal
+    setModalAbierto(false);
+
+
+    // abrir WhatsApp
+    const mensaje = `
+Hola ${turnoSeleccionado.pacienteNombre}.
+
+Su turno fue reprogramado.
+
+Nueva fecha: ${nuevaFecha}
+Nuevo horario: ${nuevoHorario}
+
+Saludos.
+`;
+
+
+    const whatsapp =
+      `https://wa.me/${turnoSeleccionado.telefono}?text=${encodeURIComponent(mensaje)}`;
+
+
+    window.open(whatsapp, "_blank");
+
+
+  } catch (error) {
+
+    console.log("Error al reprogramar:", error);
+
+  }
+
+};
 
   const cerrarSesion = () => {
     localStorage.removeItem("doctorId");
@@ -98,30 +158,43 @@ export default function DoctorPanel() {
         </h1>
 
         <h2 className="doctor-panel-subtitle">
-          Dr/a Lic. {doctorNombre}
+          Dr/a {doctorNombre}
         </h2>
 
         <div className="doctor-panel-buttons">
 
-          <button onClick={() => navigate("/")} className="btn-volver">
+          <button
+            className="btn-volver"
+            onClick={() => navigate("/")}
+          >
             Volver al inicio
           </button>
 
-          <button onClick={cerrarSesion} className="btn-logout">
+          <button
+            className="btn-logout"
+            onClick={cerrarSesion}
+          >
             Cerrar sesión
           </button>
 
         </div>
 
         {turnos.length === 0 ? (
-          <p>No hay turnos asignados</p>
+
+          <p style={{ textAlign: "center" }}>
+            No hay turnos asignados.
+          </p>
+
         ) : (
 
           <div className="doctor-turnos-list">
 
-            {turnos.map(turno => (
+            {turnos.map((turno) => (
 
-              <div key={turno._id} className="turno-item">
+              <div
+                key={turno._id}
+                className="turno-item"
+              >
 
                 <div className="turno-fecha">
                   {new Date(turno.fecha).toLocaleDateString()}
@@ -133,44 +206,45 @@ export default function DoctorPanel() {
 
                 <div className="turno-info">
 
-                  <p><strong>Paciente:</strong> {turno.pacienteNombre}</p>
-                  <p><strong>DNI:</strong> {turno.dni}</p>
-                  <p><strong>Email:</strong> {turno.email}</p>
-                  <p><strong>Teléfono:</strong> {turno.telefono}</p>
+                  <p>
+                    <strong>Paciente:</strong>{" "}
+                    {turno.pacienteNombre}
+                  </p>
 
-                  <p><strong>Estado:</strong> {turno.estado}</p>
+                  <p>
+                    <strong>DNI:</strong>{" "}
+                    {turno.dni}
+                  </p>
 
-                  {turno.estado === "rechazado" && (
-                    <p><strong>Motivo:</strong> {turno.motivoRechazo}</p>
-                  )}
+                  <p>
+                    <strong>Email:</strong>{" "}
+                    {turno.email}
+                  </p>
+
+                  <p>
+                    <strong>Teléfono:</strong>{" "}
+                    {turno.telefono}
+                  </p>
 
                 </div>
 
-                {/* 🔥 BOTONES */}
                 <div className="acciones">
 
-                  {turno.estado === "pendiente" && (
-                    <>
-                      <button
-                        className="btn-confirmar"
-                        onClick={() => confirmarTurno(turno)}
-                      >
-                        Confirmar turno
-                      </button>
+                  <button
+                    className="btn-reprogramar"
+                    onClick={() =>
+                      reprogramarTurno(turno)
+                    }
+                  >
+                    <FaCalendarAlt />
+                    Reprogramar
+                  </button>
 
-                      <button
-                        className="btn-rechazar"
-                        onClick={() => setTurnoSeleccionado(turno._id)}
-                      >
-                        Rechazar turno
-                      </button>
-                    </>
-                  )}
-
-                  {/* 🗑️ SIEMPRE visible */}
                   <button
                     className="btn-delete"
-                    onClick={() => eliminarTurno(turno._id)}
+                    onClick={() =>
+                      eliminarTurno(turno._id)
+                    }
                   >
                     <FaTrash />
                   </button>
@@ -185,24 +259,62 @@ export default function DoctorPanel() {
 
         )}
 
-        {/* 🔥 CAJA RECHAZO */}
-        {turnoSeleccionado && (
-          <div className="rechazo-box">
-
-            <textarea
-              placeholder="Escribí el motivo del rechazo..."
-              value={motivo}
-              onChange={(e) => setMotivo(e.target.value)}
-            />
-
-            <button onClick={rechazarTurno}>
-              Confirmar rechazo
-            </button>
-
-          </div>
-        )}
-
       </div>
+      {modalAbierto && (
+
+<div className="modal-overlay">
+
+<div className="modal-reprogramar">
+
+<h2>Reprogramar turno</h2>
+
+<p>
+
+<strong>Paciente:</strong>
+
+{turnoSeleccionado?.pacienteNombre}
+
+</p>
+
+<input
+type="date"
+value={nuevaFecha}
+onChange={(e)=>setNuevaFecha(e.target.value)}
+/>
+
+<input
+type="time"
+value={nuevoHorario}
+onChange={(e)=>setNuevoHorario(e.target.value)}
+/>
+
+<div className="modal-botones">
+
+<button
+className="btn-cancelar"
+onClick={()=>setModalAbierto(false)}
+>
+
+Cancelar
+
+</button>
+
+<button
+className="btn-guardar"
+onClick={guardarReprogramacion}
+>
+
+Guardar cambios
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+)}
 
     </div>
   );

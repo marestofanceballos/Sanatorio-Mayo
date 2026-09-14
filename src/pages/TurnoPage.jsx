@@ -3,6 +3,7 @@ import { doctores } from "../pages/data/doctores";
 import { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { es } from "date-fns/locale/es";
+import { API_URL } from "../config/api";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/turnos.css";
 
@@ -81,7 +82,7 @@ const handleFecha = async (fecha) => {
   try {
 
     const res = await fetch(
-      `http://localhost:4000/api/turnos/fecha?doctorId=${doctor.mongoId}&fecha=${fechaTexto}`
+      `${API_URL}/api/turnos/fecha?doctorId=${doctor.mongoId}&fecha=${fechaTexto}`
     );
 
     const data = await res.json();
@@ -128,7 +129,7 @@ const turno = {
 
 try {
 
-  const res = await fetch("http://localhost:4000/api/turnos", {
+  const res = await fetch(`${API_URL}/api/turnos`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

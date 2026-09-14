@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../config/api";
 
 const DejanosTuCV = () => {
   const [form, setForm] = useState({
@@ -47,7 +48,7 @@ const DejanosTuCV = () => {
     data.append("cv", archivo);
 
     try {
-      const res = await fetch("http://localhost:4000/api/cvs", {
+      const res = await fetch(`${API_URL}/api/cvs`, {
         method: "POST",
         body: data,
       });

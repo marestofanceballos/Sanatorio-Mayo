@@ -1,13 +1,14 @@
 import "../pages/consultorios.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { API_URL } from "../config/api";
 
 export default function PsicologiaPage() {
 
   const [doctores, setDoctores] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/doctor-auth/doctors")
+    fetch(`${API_URL}/api/doctor-auth/doctors`)
       .then(res => res.json())
       .then(data => {
         console.log("DOCTORES:", data); // 👈 para ver si llegan

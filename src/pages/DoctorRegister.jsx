@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AlertModal from "../components/AlertModal";
+import { API_URL } from "../config/api";
 import "../pages/doctorRegister.css";
 
 const DoctorRegister = () => {
@@ -24,7 +25,7 @@ const DoctorRegister = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/api/doctor-auth/crear", {
+      const res = await fetch(`${API_URL}/api/doctor-auth/crear`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

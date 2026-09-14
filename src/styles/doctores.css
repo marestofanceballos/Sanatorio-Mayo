@@ -28,7 +28,7 @@
   max-width: 900px;
   background: white;
   border-radius: 16px;
-  padding: 25px 30px;
+  padding: 34px 40px;
 
   display: flex;
   justify-content: space-between;
@@ -47,12 +47,12 @@
 .doctor-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 26px;
 }
 
 .doctor-img {
-  width: 100px;
-  height: 100px;
+  width: 145px;
+  height: 145px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #0a7c66;
@@ -66,11 +66,13 @@ margin-right: 40px;
 .doctor-info h3 {
   margin: 15px;
   color: #0a7c66;
+  font-size: 1.55rem;
 }
 
 .doctor-especialidad {
   color: #666;
   margin: 5px 0 10px;
+  font-size: 1.2rem;
 }
 
 .doctor-badges {
@@ -82,19 +84,20 @@ margin-right: 40px;
 .badge-medico {
   background: #e7f5f2;
   color: #0a7c66;
-  padding: 5px 12px;
+  padding: 7px 16px;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .doctor-btn {
   background: #0a7c66;
   color: white;
-  padding: 14px 24px;
+  padding: 16px 30px;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 1.05rem;
   transition: 0.25s;
 }
 
@@ -104,17 +107,84 @@ margin-right: 40px;
 
 /* RESPONSIVE */
 
+/* Tablet y mobile: se apila foto arriba / datos abajo */
 @media (max-width: 768px) {
 
+  .doctores-wrapper {
+    padding: 16px;
+  }
+
   .doctor-card {
+    box-sizing: border-box;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    align-items: center;
+    text-align: center;
+    gap: 22px;
+    padding: 26px 20px;
+  }
+
+  .doctor-left {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .doctor-img {
+    width: 128px;
+    height: 128px;
+  }
+
+  .doctor-info {
+    text-align: center;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .doctor-info h3 {
+    margin: 4px 0 6px;
+  }
+
+  .doctor-badges {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 4px;
   }
 
   .doctor-btn {
+    box-sizing: border-box;
+    display: block;
     width: 100%;
     text-align: center;
+  }
+
+}
+
+/* Mobile angosto: se ajustan tamaños y espaciados */
+@media (max-width: 480px) {
+
+  .doctor-card {
+    padding: 22px 16px;
+    border-radius: 14px;
+  }
+
+  .doctor-img {
+    width: 112px;
+    height: 112px;
+  }
+
+  .doctor-info h3 {
+    font-size: 1.35rem;
+  }
+
+  .doctor-especialidad {
+    font-size: 1.05rem;
+  }
+
+  .badge-medico {
+    font-size: 0.9rem;
+    padding: 6px 12px;
   }
 
 }

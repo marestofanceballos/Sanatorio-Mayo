@@ -21,6 +21,8 @@ import CirugiaGeneralPage from "./pages/CirugiaGeneralPage";
 import GinecologiaPage from "./pages/GinecologiaPage";
 import DermatologiaPage from "./pages/DermatologiaPage";
 import ClinicaGeneralPage from "./pages/ClinicaGeneralPage";
+import NutricionPage from "./pages/NutricionPage";
+import LaparoscopicaPage from "./pages/LaparoscopicaPage";
 
 import InstalacionesPage from "./pages/InstalacionesPage";
 import BusquedasActivas from "./pages/BusquedasActivas";
@@ -68,6 +70,8 @@ function App() {
         <Route path="/dermatologia" element={<DermatologiaPage />} />
         <Route path="/clinica-general" element={<ClinicaGeneralPage />} />
         <Route path="/traumatologia" element={<TraumatologiaPage />} />
+        <Route path="/nutricion" element={<NutricionPage />} />
+        <Route path="/laparoscopica" element={<LaparoscopicaPage />} />
         <Route path="/instalaciones" element={<InstalacionesPage />} />
       
         <Route path="/turno/:id" element={<TurnoPage />} />

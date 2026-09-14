@@ -25,7 +25,17 @@ export default function TraumatologiaPage() {
         <div className="cards-grid">
           {traumatologos.map((doc) => (
             <div className="doctor-card" key={doc.id}>
-              <div className="doctor-avatar" />
+              <div className="doctor-avatar">
+                {doc.foto && (
+                  <img
+                    src={doc.foto}
+                    alt={doc.nombre}
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                )}
+              </div>
 
               <h3>{doc.nombre}</h3>
 

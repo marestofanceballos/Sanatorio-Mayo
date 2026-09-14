@@ -67,6 +67,43 @@
   transform: translateY(-2px);
 }
 
+/* CAMPO CONTRASEÑA CON OJITO */
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.password-field .password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  cursor: pointer;
+  color: #6B7280;
+  font-size: 17px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.password-field .password-toggle:hover {
+  background: none;
+  transform: translateY(-50%);
+  color: #1E5C38;
+}
+
 /* LINK */
 .doctor-register-link {
   color: #1E5C38;

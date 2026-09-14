@@ -6,12 +6,16 @@ export default function TurnosPage() {
 
   const departamentos = [
     { nombre: "Cardiología", ruta: "/doctores/cardiologia" },
+    // Ocultas temporalmente hasta que haya médicos cargados.
+    // Para reactivarlas, descomentar la línea correspondiente:
+    // { nombre: "Psicología", ruta: "/doctores/psicologia" },
+    // { nombre: "Dermatología", ruta: "/doctores/dermatologia" },
     { nombre: "Traumatología", ruta: "/doctores/traumatologia" },
-    { nombre: "Psicología", ruta: "/doctores/psicologia" },
-    { nombre: "Clínica General", ruta: "/doctores/clinica" },
-    { nombre: "Cirugía General", ruta: "/doctores/cirugia" }, 
+    { nombre: "Medicina Estética y Cirugía General", ruta: "/doctores/clinica" },
+    { nombre: "Cirugía General y Coloproctología", ruta: "/doctores/cirugia" },
+    { nombre: "Cirugía Laparoscópica", ruta: "/doctores/laparoscopica" },
     { nombre: "Ginecología", ruta: "/doctores/ginecologia" },
-    { nombre: "Dermatología", ruta: "/doctores/dermatologia" }
+    { nombre: "Nutrición", ruta: "/doctores/nutricion" }
   ];
 
   return (

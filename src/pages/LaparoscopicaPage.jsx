@@ -1,30 +1,18 @@
 import "../pages/consultorios.css";
+import { doctores } from "../pages/data/doctores";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-export default function PsicologiaPage() {
+export default function LaparoscopicaPage() {
 
-  const [doctores, setDoctores] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/api/doctor-auth/doctors")
-      .then(res => res.json())
-      .then(data => {
-        console.log("DOCTORES:", data); // 👈 para ver si llegan
-        setDoctores(data);
-      })
-      .catch(err => console.error(err));
-  }, []);
-
-  const psicologos = doctores.filter(
-    doc => doc.especialidad === "psicologia"
+  const cirujanos = doctores.filter(
+    (doc) => doc.especialidad === "laparoscopica"
   );
 
   return (
     <div className="especialidad-page">
 
       <div className="text-center mb-5">
-        <h1 className="especialidad-title">Psicología</h1>
+        <h1 className="especialidad-title">Cirugía Laparoscópica</h1>
         <p className="especialidad-subtitle">Sanatorio Mayo S.A.</p>
       </div>
 
@@ -33,14 +21,8 @@ export default function PsicologiaPage() {
         <hr />
 
         <div className="cards-grid">
-
-          {psicologos.length === 0 && (
-            <p>No hay psicólogos cargados</p>
-          )}
-
-          {psicologos.map((doc) => (
-            <div className="doctor-card" key={doc._id}>
-
+          {cirujanos.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
               <div className="doctor-avatar">
                 {doc.foto && (
                   <img
@@ -55,25 +37,27 @@ export default function PsicologiaPage() {
 
               <h3>{doc.nombre}</h3>
 
-              <p>Horarios:</p>
-              {doc.horarios?.map((hora, i) => (
-                <p key={i}>{hora}</p>
-              ))}
+              {doc.telefono && (
+                <p className="doctor-phone">📞 {doc.telefono}</p>
+              )}
+
+              {doc.observacion && (
+                <p className="doctor-observacion">
+                  {doc.observacion}
+                </p>
+              )}
 
               <Link
-                to={`/turno/${doc._id}`}
+                to={`/turno/${doc.id}`}
                 className="btn-turno"
               >
                 Solicitar turno
               </Link>
-
             </div>
           ))}
-
         </div>
       </div>
 
     </div>
   );
 }
-

@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import AlertModal from "../components/AlertModal";
 import "../pages/doctorLogin.css";
 
 export default function DoctorLogin() {
 
   const navigate = useNavigate();
+
+  const [mostrarPassword, setMostrarPassword] = useState(false);
+
+  const [alerta, setAlerta] = useState({ open: false, tipo: "error", mensaje: "" });
+
+  const cerrarAlerta = () =>
+    setAlerta((a) => ({ ...a, open: false }));
+
+  const mostrarError = (mensaje) =>
+    setAlerta({ open: true, tipo: "error", mensaje });
 
   const [form, setForm] = useState({
     email: "",
@@ -36,7 +48,7 @@ export default function DoctorLogin() {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.msg);
+        mostrarError(data.msg || "No se pudo iniciar sesión.");
         return;
       }
 
@@ -49,6 +61,7 @@ export default function DoctorLogin() {
 
     } catch (error) {
       console.log(error);
+      mostrarError("Error de conexión con el servidor. Intentá nuevamente.");
     }
   };
 
@@ -73,14 +86,24 @@ export default function DoctorLogin() {
             className="doctor-login-input"
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            onChange={handleChange}
-            required
-            className="doctor-login-input"
-          />
+          <div className="password-field">
+            <input
+              type={mostrarPassword ? "text" : "password"}
+              name="password"
+              placeholder="Contraseña"
+              onChange={handleChange}
+              required
+              className="doctor-login-input"
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setMostrarPassword((v) => !v)}
+              aria-label={mostrarPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+            >
+              {mostrarPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
           <button
             type="submit"
@@ -98,6 +121,13 @@ export default function DoctorLogin() {
 
         </form>
       </div>
+
+      <AlertModal
+        open={alerta.open}
+        tipo={alerta.tipo}
+        mensaje={alerta.mensaje}
+        onClose={cerrarAlerta}
+      />
     </div>
   );
 }

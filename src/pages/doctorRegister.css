@@ -67,3 +67,40 @@
   background: linear-gradient(135deg, #1B3D2F, #1E5C38);
   transform: translateY(-2px);
 }
+
+/* CAMPO CONTRASEÑA CON OJITO */
+.password-field{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.password-field input{
+  width:100%;
+  padding-right:42px;
+}
+
+.password-field .password-toggle{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  margin:0;
+  padding:0;
+  border:none;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+  color:#6B7280;
+  font-size:17px;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+
+.password-field .password-toggle:hover{
+  background:none;
+  transform:translateY(-50%);
+  color:#1E5C38;
+}

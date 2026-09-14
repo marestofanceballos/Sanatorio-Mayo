@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import AlertModal from "../components/AlertModal";
 import "../pages/doctorRegister.css";
 
 const DoctorRegister = () => {
@@ -8,6 +10,15 @@ const DoctorRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [codigo, setCodigo] = useState("");
+  const [mostrarPassword, setMostrarPassword] = useState(false);
+
+  const [alerta, setAlerta] = useState({ open: false, tipo: "error", mensaje: "" });
+
+  const cerrarAlerta = () =>
+    setAlerta((a) => ({ ...a, open: false }));
+
+  const mostrarError = (mensaje) =>
+    setAlerta({ open: true, tipo: "error", mensaje });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,11 +41,15 @@ const DoctorRegister = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.msg);
+        mostrarError(data.msg || "No se pudo completar el registro.");
         return;
       }
 
-      alert("Doctor creado correctamente");
+      setAlerta({
+        open: true,
+        tipo: "success",
+        mensaje: "Doctor creado correctamente."
+      });
 
       setNombre("");
       setEspecialidad("");
@@ -44,7 +59,7 @@ const DoctorRegister = () => {
 
     } catch (error) {
       console.log(error);
-      alert("Error al registrar");
+      mostrarError("Error de conexión con el servidor. Intentá nuevamente.");
     }
   };
 
@@ -81,13 +96,23 @@ const DoctorRegister = () => {
             required
           />
 
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="password-field">
+            <input
+              type={mostrarPassword ? "text" : "password"}
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setMostrarPassword((v) => !v)}
+              aria-label={mostrarPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+            >
+              {mostrarPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
           <input
             type="text"
@@ -102,6 +127,13 @@ const DoctorRegister = () => {
         </form>
 
       </div>
+
+      <AlertModal
+        open={alerta.open}
+        tipo={alerta.tipo}
+        mensaje={alerta.mensaje}
+        onClose={cerrarAlerta}
+      />
 
     </div>
   );

@@ -10,6 +10,9 @@ export default function DoctorPanel() {
   const [modalAbierto, setModalAbierto] = useState(false);
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
 
+  const [modalEliminarAbierto, setModalEliminarAbierto] = useState(false);
+  const [turnoAEliminar, setTurnoAEliminar] = useState(null);
+
   const [nuevaFecha, setNuevaFecha] = useState("");
   const [nuevoHorario, setNuevoHorario] = useState("");
 
@@ -41,21 +44,28 @@ export default function DoctorPanel() {
     }
   };
 
-  const eliminarTurno = async (id) => {
+  const pedirEliminarTurno = (turno) => {
+    setTurnoAEliminar(turno);
+    setModalEliminarAbierto(true);
+  };
 
-    const confirmar = window.confirm(
-      "¿Desea eliminar este turno?"
-    );
+  const cerrarModalEliminar = () => {
+    setModalEliminarAbierto(false);
+    setTurnoAEliminar(null);
+  };
 
-    if (!confirmar) return;
+  const confirmarEliminarTurno = async () => {
+
+    if (!turnoAEliminar) return;
 
     await fetch(
-      `http://localhost:4000/api/turnos/${id}`,
+      `http://localhost:4000/api/turnos/${turnoAEliminar._id}`,
       {
         method: "DELETE"
       }
     );
 
+    cerrarModalEliminar();
     cargarTurnos();
   };
 
@@ -148,6 +158,19 @@ Saludos.
     }
   }, [doctorId]);
 
+  useEffect(() => {
+    if (!modalEliminarAbierto) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        cerrarModalEliminar();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [modalEliminarAbierto]);
+
   return (
     <div className="doctor-panel-wrapper">
 
@@ -206,6 +229,13 @@ Saludos.
 
                 <div className="turno-info">
 
+                  {turno.especialidad && (
+                    <p>
+                      <strong>Especialidad:</strong>{" "}
+                      {turno.especialidad}
+                    </p>
+                  )}
+
                   <p>
                     <strong>Paciente:</strong>{" "}
                     {turno.pacienteNombre}
@@ -243,7 +273,7 @@ Saludos.
                   <button
                     className="btn-delete"
                     onClick={() =>
-                      eliminarTurno(turno._id)
+                      pedirEliminarTurno(turno)
                     }
                   >
                     <FaTrash />
@@ -315,6 +345,62 @@ Guardar cambios
 </div>
 
 )}
+
+      {modalEliminarAbierto && (
+
+        <div
+          className="modal-overlay"
+          onClick={cerrarModalEliminar}
+        >
+
+          <div
+            className="modal-eliminar"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <h2>Eliminar turno</h2>
+
+            <p>¿Seguro que querés eliminar este turno?</p>
+
+            <div className="modal-eliminar-datos">
+              <p>
+                <strong>Paciente:</strong>{" "}
+                {turnoAEliminar?.pacienteNombre}
+              </p>
+              <p>
+                <strong>Fecha:</strong>{" "}
+                {turnoAEliminar &&
+                  new Date(turnoAEliminar.fecha).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Horario:</strong>{" "}
+                {turnoAEliminar?.horario}
+              </p>
+            </div>
+
+            <div className="modal-botones">
+
+              <button
+                className="btn-cancelar"
+                onClick={cerrarModalEliminar}
+              >
+                Cancelar
+              </button>
+
+              <button
+                className="btn-eliminar-confirm"
+                onClick={confirmarEliminarTurno}
+              >
+                Eliminar
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
   );

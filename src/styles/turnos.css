@@ -117,23 +117,96 @@
   font-weight: 600;
 }
 
-/* INPUT FECHA */
+/* INPUT FECHA (react-datepicker) */
+.fecha-input-wrapper {
+  display: block;
+  width: 220px;
+  margin: 20px auto;
+}
+
 .fecha-input {
   display: block;
-  margin: 20px auto;
+  width: 100%;
   padding: 12px 16px;
   border-radius: 10px;
   border: 1px solid #D1D5DB;
   font-size: 16px;
   text-align: center;
-  width: 220px;
   transition: all 0.2s ease;
+  cursor: pointer;
+  background: #FFFFFF;
 }
 
 .fecha-input:focus {
   outline: none;
   border-color: #1E5C38;
   box-shadow: 0 0 0 3px rgba(30, 92, 56, 0.2);
+}
+
+/* CALENDARIO VISUAL */
+.turno-calendar.react-datepicker {
+  font-family: inherit;
+  border: 1px solid #D1D5DB;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.turno-calendar .react-datepicker__header {
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  border-bottom: none;
+  padding-top: 12px;
+}
+
+/* La fila de nombres de días (LU, MA, MI...) no es parte de .header:
+   se renderiza aparte, así que hay que pintarle el mismo verde a mano
+   para que siga el mismo bloque visual y el texto blanco se vea. */
+.turno-calendar .react-datepicker__day-names {
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  margin-bottom: 0;
+  padding-bottom: 8px;
+}
+
+.turno-calendar .react-datepicker__current-month,
+.turno-calendar .react-datepicker__day-name {
+  color: #FFFFFF;
+}
+
+.turno-calendar .react-datepicker__day-name {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.turno-calendar .react-datepicker__navigation-icon::before {
+  border-color: #FFFFFF;
+}
+
+/* DÍAS QUE EL MÉDICO ATIENDE */
+.turno-calendar .react-datepicker__day {
+  border-radius: 8px;
+  color: #1B3D2F;
+}
+
+.turno-calendar .react-datepicker__day:hover {
+  background-color: rgba(30, 92, 56, 0.15);
+}
+
+.turno-calendar .react-datepicker__day--selected,
+.turno-calendar .react-datepicker__day--keyboard-selected {
+  background: linear-gradient(135deg, #1E5C38, #2D7A4F);
+  color: #FFFFFF;
+}
+
+/* DÍAS QUE EL MÉDICO NO ATIENDE: grises y no clickeables */
+.turno-calendar .react-datepicker__day--disabled {
+  color: #C1C7C5;
+  background-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.turno-calendar .react-datepicker__day--disabled:hover {
+  background-color: transparent;
 }
 
 /* ====== RESPONSIVE ====== */

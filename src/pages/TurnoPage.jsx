@@ -1,7 +1,25 @@
 import { useParams } from "react-router-dom";
 import { doctores } from "../pages/data/doctores";
 import { useState } from "react";
+import DatePicker, { registerLocale } from "react-datepicker";
+import { es } from "date-fns/locale/es";
+import "react-datepicker/dist/react-datepicker.css";
 import "../styles/turnos.css";
+
+registerLocale("es", es);
+
+const ABREVIATURAS_DIA = {
+  lunes: "LU",
+  martes: "MA",
+  "miércoles": "MI",
+  jueves: "JU",
+  viernes: "VI",
+  "sábado": "SA",
+  domingo: "DO",
+};
+
+const formatDiaSemana = (nombreCompleto) =>
+  ABREVIATURAS_DIA[nombreCompleto.toLowerCase()] ?? nombreCompleto.slice(0, 2).toUpperCase();
 
 export default function TurnoPage() {
 
@@ -12,10 +30,11 @@ const doctor = doctores.find(
 );
 
 const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
-const [fechaSeleccionada, setFechaSeleccionada] = useState("");
+const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
 const [mensajeExito, setMensajeExito] = useState("");
 const [enviando, setEnviando] = useState(false);
 const [horariosOcupados, setHorariosOcupados] = useState([]);
+const [especialidadSeleccionada, setEspecialidadSeleccionada] = useState(null);
 
 const [formData, setFormData] = useState({
 pacienteNombre: "",
@@ -35,23 +54,28 @@ setFormData({
 });
 };
 
-const handleFecha = async (e) => {
+const formatFechaISO = (fecha) => {
+  const y = fecha.getFullYear();
+  const m = String(fecha.getMonth() + 1).padStart(2, "0");
+  const d = String(fecha.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+};
 
-  const fechaTexto = e.target.value;
+const diaHabilitado = (fecha) =>
+  !doctor.diasAtencion || doctor.diasAtencion.includes(fecha.getDay());
 
-  const partes = fechaTexto.split("-");
-  const fecha = new Date(partes[0], partes[1] - 1, partes[2]);
+const handleFecha = async (fecha) => {
 
-  const dia = fecha.getDay();
-
-  if (doctor.diasAtencion && !doctor.diasAtencion.includes(dia)) {
-    setMensajeExito("❌ Este doctor no atiende ese día");
-    setFechaSeleccionada("");
+  if (!fecha) {
+    setFechaSeleccionada(null);
     return;
   }
 
   setMensajeExito("");
-  setFechaSeleccionada(fechaTexto);
+  setHorarioSeleccionado(null);
+  setFechaSeleccionada(fecha);
+
+  const fechaTexto = formatFechaISO(fecha);
 
   // CONSULTAR TURNOS OCUPADOS
   try {
@@ -83,7 +107,7 @@ if (!fechaSeleccionada) {
   return;
 }
 
-if (!horarioSeleccionado) {
+if (!doctor.sinTurno && !horarioSeleccionado) {
   setMensajeExito("⚠️ Seleccioná un horario");
   return;
 }
@@ -93,12 +117,13 @@ setEnviando(true);
 const turno = {
   doctorId: doctor.mongoId,
   doctorNombre: doctor.nombre,
-  fecha: fechaSeleccionada,
-  horario: horarioSeleccionado,
+  fecha: formatFechaISO(fechaSeleccionada),
+  horario: doctor.sinTurno ? "Por orden de llegada" : horarioSeleccionado,
   pacienteNombre: formData.pacienteNombre,
   dni: formData.dni,
   email: formData.email,
-  telefono: formData.telefono
+  telefono: formData.telefono,
+  ...(doctor.especialidades && { especialidad: especialidadSeleccionada })
 };
 
 try {
@@ -123,7 +148,11 @@ try {
     });
 
     setHorarioSeleccionado(null);
-    setFechaSeleccionada("");
+    setFechaSeleccionada(null);
+
+    if (doctor.especialidades) {
+      setEspecialidadSeleccionada(null);
+    }
 
   } else {
 
@@ -151,45 +180,90 @@ return (
     Turno con {doctor.nombre}
   </h1>
 
-  <h2>Elegir fecha</h2>
+  {doctor.avisoHorario && (
+    <p className="mensaje-exito">
+      {doctor.avisoHorario}
+    </p>
+  )}
 
-  <input
-    type="date"
-    className="fecha-input"
-    min={new Date().toISOString().split("T")[0]}
-    value={fechaSeleccionada}
-    onChange={handleFecha}
-  />
+  {doctor.especialidades && (
 
-  <h2>Horarios disponibles</h2>
+    <>
+      <h2>Elegir especialidad</h2>
 
-  <div className="horarios-grid">
-    {doctor.horarios.map((hora) => {
+      <div className="horarios-grid">
+        {doctor.especialidades.map((esp) => (
+          <button
+            key={esp}
+            type="button"
+            className={`horario-btn ${especialidadSeleccionada === esp ? "activo" : ""}`}
+            onClick={() => setEspecialidadSeleccionada(esp)}
+          >
+            {esp}
+          </button>
+        ))}
+      </div>
+    </>
 
-  const ocupado = horariosOcupados.includes(hora);
+  )}
 
-  return (
+  {(!doctor.especialidades || especialidadSeleccionada) && (
 
-    <button
-      key={hora}
-      type="button"
-      disabled={ocupado}
-      className={`horario-btn 
-        ${horarioSeleccionado === hora ? "activo" : ""} 
-        ${ocupado ? "ocupado" : ""}`}
-      onClick={() => setHorarioSeleccionado(hora)}
-    >
+    <>
+      <h2>Elegir fecha</h2>
 
-      {ocupado ? "Reservado" : hora}
+      <DatePicker
+        selected={fechaSeleccionada}
+        onChange={handleFecha}
+        filterDate={diaHabilitado}
+        minDate={new Date()}
+        locale="es"
+        formatWeekDay={formatDiaSemana}
+        dateFormat="dd/MM/yyyy"
+        placeholderText="Seleccioná una fecha"
+        className="fecha-input"
+        calendarClassName="turno-calendar"
+        wrapperClassName="fecha-input-wrapper"
+        popperPlacement="bottom"
+        autoComplete="off"
+      />
 
-    </button>
+      {!doctor.sinTurno && (
+        <>
+          <h2>Horarios disponibles</h2>
 
-  );
+          <div className="horarios-grid">
+            {doctor.horarios.map((hora) => {
 
-})}
-  </div>
+          const ocupado = horariosOcupados.includes(hora);
 
-  {horarioSeleccionado && (
+          return (
+
+            <button
+              key={hora}
+              type="button"
+              disabled={ocupado}
+              className={`horario-btn
+                ${horarioSeleccionado === hora ? "activo" : ""}
+                ${ocupado ? "ocupado" : ""}`}
+              onClick={() => setHorarioSeleccionado(hora)}
+            >
+
+              {ocupado ? "Reservado" : hora}
+
+            </button>
+
+          );
+
+        })}
+          </div>
+        </>
+      )}
+    </>
+
+  )}
+
+  {(horarioSeleccionado || (doctor.sinTurno && fechaSeleccionada)) && (
 
     <>
       <h2>Datos del paciente</h2>
@@ -232,7 +306,9 @@ return (
         <button type="submit" disabled={enviando}>
           {enviando
             ? "Asignando turno..."
-            : `Confirmar turno (${horarioSeleccionado})`}
+            : doctor.sinTurno
+              ? "Confirmar turno"
+              : `Confirmar turno (${horarioSeleccionado})`}
         </button>
 
       </form>

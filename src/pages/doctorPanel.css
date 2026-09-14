@@ -262,6 +262,61 @@
   transform:translateY(-2px);
 }
 
+/* ===== MODAL ELIMINAR TURNO ===== */
+
+.modal-eliminar {
+  width:100%;
+  max-width:420px;
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+  animation:aparecer .25s ease;
+}
+
+.modal-eliminar h2 {
+  text-align:center;
+  color:#1B3D2F;
+  margin-bottom:16px;
+}
+
+.modal-eliminar > p {
+  text-align:center;
+  color:#2C3E35;
+  margin-bottom:18px;
+}
+
+.modal-eliminar-datos {
+  background:#F8FFFC;
+  border-left:4px solid #1E5C38;
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:22px;
+}
+
+.modal-eliminar-datos p {
+  margin:4px 0;
+  font-size:14px;
+  color:#2C3E35;
+}
+
+.btn-eliminar-confirm {
+  flex:1;
+  background:#dc2626;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.btn-eliminar-confirm:hover {
+  background:#b91c1c;
+  transform:translateY(-2px);
+}
+
 /* ANIMACION */
 @keyframes aparecer {
   from {
@@ -304,7 +359,8 @@
   width:100%;
 }
 
-.modal-reprogramar {
+.modal-reprogramar,
+.modal-eliminar {
   width:90%;
 }
 

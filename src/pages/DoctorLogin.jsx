@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AlertModal from "../components/AlertModal";
+import { API_URL } from "../config/api";
 import "../pages/doctorLogin.css";
 
 export default function DoctorLogin() {
@@ -34,7 +35,7 @@ export default function DoctorLogin() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/api/doctor-auth/login", {
+      const res = await fetch(`${API_URL}/api/doctor-auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

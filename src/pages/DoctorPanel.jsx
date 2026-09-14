@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrash, FaCalendarAlt } from "react-icons/fa";
+import { API_URL } from "../config/api";
 import "../pages/doctorPanel.css";
 
 export default function DoctorPanel() {
@@ -25,7 +26,7 @@ export default function DoctorPanel() {
     try {
 
       const res = await fetch(
-        `http://localhost:4000/api/turnos/doctor/${doctorId}`
+        `${API_URL}/api/turnos/doctor/${doctorId}`
       );
 
       const data = await res.json();
@@ -59,7 +60,7 @@ export default function DoctorPanel() {
     if (!turnoAEliminar) return;
 
     await fetch(
-      `http://localhost:4000/api/turnos/${turnoAEliminar._id}`,
+      `${API_URL}/api/turnos/${turnoAEliminar._id}`,
       {
         method: "DELETE"
       }
@@ -86,7 +87,7 @@ const guardarReprogramacion = async () => {
   try {
 
     const res = await fetch(
-      `http://localhost:4000/api/turnos/reprogramar/${turnoSeleccionado._id}`,
+      `${API_URL}/api/turnos/reprogramar/${turnoSeleccionado._id}`,
       {
         method: "PUT",
         headers: {

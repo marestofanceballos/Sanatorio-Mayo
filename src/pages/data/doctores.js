@@ -4,11 +4,11 @@ export const doctores = [
     id: 1,
     especialidad: "clinica",
     especialidades: ["Medicina Estética", "Cirugía General"],
-    nombre: "Dra. Contrera Camila",
+    nombre: "Dra. Contreras Camila",
     mongoId: "6aa85927e79f6ff7ce1f38e4", // 👈 ID REAL
     // Campo opcional: URL externa de la foto del médico.
     // Si no está definido, la tarjeta muestra el ícono genérico de siempre.
-    foto: "https://i.postimg.cc/kMFw5j0F/camila-contreras-jpg.jpg",
+    foto: "/camila-contreras.jpg",
     diasAtencion: [3], // 👈 solo miércoles
     horarios: ["10:30", "11:30", "12:30", "13:30", "14:30"],
     avisoHorario: "Los miércoles atiende desde 14:00 a 16:30 hs.",
@@ -21,7 +21,7 @@ export const doctores = [
     especialidades: ["Nutrición Deportiva y Clínica", "Antropometría"],
     nombre: "Lic. Amran Milagro",
     mongoId: "6aa1b4e07267d3d152f8814c", // 👈 ID REAL de Amran
-    foto: "https://i.postimg.cc/zBxR6P25/nutricionista.jpg",
+    foto: "/nutricionista-amran.jpg",
     diasAtencion: [2, 4], // 👈 martes y jueves
     horarios: [
       "15:00", "15:30", "16:00", "16:30",
@@ -36,7 +36,7 @@ export const doctores = [
     especialidad: "ginecologia",
     nombre: "Dra. Linares María Virginia",
     mongoId: "6aa1be6e7267d3d152f8814f", // 👈 ID REAL de Linares
-    foto: "https://i.postimg.cc/fLCxZbyL/Linares.jpg",
+    foto: "/linares.jpg",
     diasAtencion: [3], // 👈 solo miércoles
     horarios: [
       "17:00", "17:20", "17:40", "18:00", "18:20",
@@ -52,7 +52,7 @@ export const doctores = [
     especialidades: ["Cirugía General", "Coloproctología"],
     nombre: "Dra. Saracho María Belén",
     mongoId: "6aa1c0a07267d3d152f88152", // 👈 ID REAL de Saracho
-    foto: "https://i.postimg.cc/cJJ9PPXw/Saracho-Maria-Belen.jpg",
+    foto: "/saracho.jpg",
     diasAtencion: [6], // 👈 solo sábado
     horarios: ["09:30", "09:50", "10:10", "10:30", "10:50", "11:10"],
     avisoHorario: "Los sábados atiende de 9:30 a 11:30 hs.",
@@ -64,7 +64,7 @@ export const doctores = [
     especialidad: "traumatologia",
     nombre: "Dr. Evaristo Pérez De Nucci",
     mongoId: "6aa1ca057267d3d152f88155", // 👈 ID REAL de Pérez De Nucci
-    foto: "https://i.postimg.cc/DZxB66qv/Evaristo-Perez-De-Nucci.jpg",
+    foto: "/perez-de-nucci.jpg",
     diasAtencion: [2, 5], // 👈 martes y viernes
     sinTurno: true, // 👈 no usa horarios fijos, es por orden de llegada
     horarios: [], // sin horarios, ver "sinTurno"
@@ -77,7 +77,7 @@ export const doctores = [
     especialidad: "laparoscopica",
     nombre: "Dr. Gustavo Alberto Antonio Yapur Navarro",
     mongoId: "6aa8471fe79f6ff7ce1f38b0", // 👈 ID REAL de Yapur Navarro
-    foto: "https://i.postimg.cc/rmgM9Bnd/Gustavo-Alberto-Antonio-yapur-Navarro.jpg",
+    foto: "/yapur-navarro.jpg",
     diasAtencion: [1], // 👈 solo lunes (consultorio)
     horarios: [
       "16:30", "16:45", "17:00", "17:15", "17:30", "17:45",
@@ -91,9 +91,9 @@ export const doctores = [
   {
     id: 7,
     especialidad: "cardiologia",
-    nombre: "Dra. Valery Andía Gonzalez",
+    nombre: "Dr. Valery Andía Gonzalez",
     mongoId: "6aa84a84e79f6ff7ce1f38c2", // 👈 ID REAL de Andía Gonzalez
-    foto: "https://i.postimg.cc/5NMB8XXW/Valery-Andia-Gonzalez.jpg",
+    foto: "/andia-gonzalez.jpg",
     diasAtencion: [3, 5, 6], // 👈 miércoles, viernes y sábado
     sinTurno: true, // 👈 no usa horarios fijos, es por orden de llegada
     horarios: [], // sin horarios, ver "sinTurno"

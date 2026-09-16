@@ -10,7 +10,7 @@ export const doctores = [
     // Si no está definido, la tarjeta muestra el ícono genérico de siempre.
     foto: "/camila-contreras.jpg",
     diasAtencion: [3], // 👈 solo miércoles
-    horarios: ["10:30", "11:30", "12:30", "13:30", "14:30"],
+    horarios: ["14:00", "14:30", "15:00", "15:30", "16:00","16.30"],
     avisoHorario: "Los miércoles atiende desde 14:00 a 16:30 hs.",
   },
 

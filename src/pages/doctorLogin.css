@@ -114,3 +114,30 @@
 .doctor-register-link:hover {
   text-decoration: underline;
 }
+/* ===== PESTAÑAS DEL LOGIN ===== */
+
+.login-tabs {
+  display: flex;
+  background: #F3F4F6;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 22px;
+}
+
+.login-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #6B7280;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.login-tab.activo {
+  background: #FFFFFF;
+  color: #1E5C38;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}

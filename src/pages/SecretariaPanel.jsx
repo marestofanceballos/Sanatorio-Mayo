@@ -34,8 +34,25 @@ const PACIENTE_VACIO = {
   dni: "",
   telefono: "",
   email: "",
+  obraSocial: "",
   observacion: "",
 };
+
+// sugerencias para el campo obra social (se puede escribir cualquier otra)
+const OBRAS_SOCIALES = [
+  "Particular",
+  "PAMI",
+  "Subsidio de Salud",
+  "OSDE",
+  "Swiss Medical",
+  "Galeno",
+  "Medifé",
+  "Sancor Salud",
+  "OSECAC",
+  "IOSFA",
+  "OSPE",
+  "Prevención Salud",
+];
 
 // "2026-10-20" -> Date local (new Date("2026-10-20") es UTC y en Argentina muestra el día anterior)
 const fechaLocal = (iso) => {
@@ -573,7 +590,13 @@ export default function SecretariaPanel() {
                 <input name="dni" placeholder="DNI" value={paciente.dni} onChange={cambiarPaciente} required />
                 <input name="telefono" placeholder="Teléfono" value={paciente.telefono} onChange={cambiarPaciente} required />
                 <input name="email" type="email" placeholder="Email (opcional)" value={paciente.email} onChange={cambiarPaciente} />
-                <input name="observacion" placeholder="Observación (opcional)" value={paciente.observacion} onChange={cambiarPaciente} className="secretaria-campo-ancho" />
+                <input name="obraSocial" placeholder="Obra social (opcional)" value={paciente.obraSocial} onChange={cambiarPaciente} list="obras-sociales" autoComplete="off" />
+                <datalist id="obras-sociales">
+                  {OBRAS_SOCIALES.map((os) => (
+                    <option key={os} value={os} />
+                  ))}
+                </datalist>
+                <input name="observacion" placeholder="Observación (opcional)" value={paciente.observacion} onChange={cambiarPaciente} />
               </div>
 
               <button type="submit" className="btn-guardar secretaria-btn-agendar" disabled={guardandoTurno}>
@@ -603,6 +626,7 @@ export default function SecretariaPanel() {
                       <p><strong>DNI:</strong> {turno.dni}</p>
                       <p><strong>Teléfono:</strong> {turno.telefono}</p>
                       {turno.email && <p><strong>Email:</strong> {turno.email}</p>}
+                      {turno.obraSocial && <p><strong>Obra social:</strong> {turno.obraSocial}</p>}
                       {turno.observacion && <p><strong>Observación:</strong> {turno.observacion}</p>}
                       <p className="secretaria-origen">
                         {turno.origen === "secretaria" ? "Cargado por secretaría" : "Reservado por la web"}

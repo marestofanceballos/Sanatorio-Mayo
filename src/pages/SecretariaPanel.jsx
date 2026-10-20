@@ -100,6 +100,10 @@ export default function SecretariaPanel() {
   // modal eliminar
   const [turnoEliminar, setTurnoEliminar] = useState(null);
 
+  // modal eliminar doctor: { doctor, turnosProximos }
+  const [doctorEliminar, setDoctorEliminar] = useState(null);
+  const [eliminandoDoctor, setEliminandoDoctor] = useState(false);
+
   const [alerta, setAlerta] = useState({ open: false, tipo: "error", mensaje: "" });
   const cerrarAlerta = useCallback(() => setAlerta((a) => ({ ...a, open: false })), []);
   const mostrarError = (mensaje) => setAlerta({ open: true, tipo: "error", mensaje });
@@ -211,6 +215,46 @@ export default function SecretariaPanel() {
       mostrarError("Error de conexión con el servidor. Intentá nuevamente.");
     } finally {
       setGuardandoDoctor(false);
+    }
+  };
+
+  const pedirEliminarDoctor = async (doctor) => {
+    try {
+      const { ok, data } = await api(`/turnos?doctorId=${doctor._id}`);
+      const hoy = hoyISO();
+      const turnosProximos = ok ? data.filter((t) => t.fecha >= hoy).length : 0;
+      setDoctorEliminar({ doctor, turnosProximos });
+    } catch {
+      mostrarError("Error de conexión con el servidor. Intentá nuevamente.");
+    }
+  };
+
+  const confirmarEliminarDoctor = async () => {
+    const { doctor } = doctorEliminar;
+    setEliminandoDoctor(true);
+    try {
+      const { ok, data } = await api(`/doctores/${doctor._id}`, { method: "DELETE" });
+      if (!ok) {
+        mostrarError(data.mensaje || "No se pudo eliminar el doctor.");
+        return;
+      }
+      setDoctorEliminar(null);
+      if (doctorSel?._id === doctor._id) seleccionarDoctor(null);
+      await cargarDoctores();
+      const cancelados = data.turnosCancelados
+        ? data.turnosCancelados === 1
+          ? " Se canceló 1 turno próximo."
+          : ` Se cancelaron ${data.turnosCancelados} turnos próximos.`
+        : "";
+      mostrarExito(
+        (data.doctorBorrado
+          ? `${doctor.nombre} fue eliminado.`
+          : `${doctor.nombre} ya no está en tu lista.`) + cancelados
+      );
+    } catch {
+      mostrarError("Error de conexión con el servidor. Intentá nuevamente.");
+    } finally {
+      setEliminandoDoctor(false);
     }
   };
 
@@ -379,18 +423,19 @@ export default function SecretariaPanel() {
   }, [cargarTurnos]);
 
   useEffect(() => {
-    const abierto = modalDoctor || turnoReprogramar || turnoEliminar;
+    const abierto = modalDoctor || turnoReprogramar || turnoEliminar || doctorEliminar;
     if (!abierto) return;
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
         setModalDoctor(null);
         setTurnoReprogramar(null);
         setTurnoEliminar(null);
+        setDoctorEliminar(null);
       }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [modalDoctor, turnoReprogramar, turnoEliminar]);
+  }, [modalDoctor, turnoReprogramar, turnoEliminar, doctorEliminar]);
 
   const hoy = hoyISO();
   const turnosVisibles = turnos.filter((t) => verPasados || t.fecha >= hoy);
@@ -436,15 +481,26 @@ export default function SecretariaPanel() {
                 <div className="secretaria-doctor-dias">
                   {doc.sinTurno ? POR_ORDEN : `${doc.horarios.length} ${doc.horarios.length === 1 ? "horario" : "horarios"}`}
                 </div>
-                <button
-                  className="secretaria-btn-editar"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    abrirEditarDoctor(doc);
-                  }}
-                >
-                  <FaEdit /> Editar
-                </button>
+                <div className="secretaria-doctor-acciones">
+                  <button
+                    className="secretaria-btn-editar"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      abrirEditarDoctor(doc);
+                    }}
+                  >
+                    <FaEdit /> Editar
+                  </button>
+                  <button
+                    className="secretaria-btn-eliminar"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      pedirEliminarDoctor(doc);
+                    }}
+                  >
+                    <FaTrash /> Eliminar
+                  </button>
+                </div>
               </div>
             ))}
 
@@ -708,6 +764,35 @@ export default function SecretariaPanel() {
             <div className="modal-botones">
               <button className="btn-cancelar" onClick={() => setTurnoEliminar(null)}>Volver</button>
               <button className="btn-eliminar-confirm" onClick={confirmarEliminar}>Cancelar turno</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== MODAL ELIMINAR DOCTOR ===== */}
+      {doctorEliminar && (
+        <div className="modal-overlay" onClick={() => setDoctorEliminar(null)}>
+          <div className="modal-eliminar" onClick={(e) => e.stopPropagation()}>
+            <h2>Eliminar doctor</h2>
+            <p>¿Seguro que querés eliminar a este doctor de tu lista?</p>
+            <div className="modal-eliminar-datos">
+              <p><strong>Doctor:</strong> {doctorEliminar.doctor.nombre}</p>
+              <p><strong>Especialidad:</strong> {doctorEliminar.doctor.especialidad}</p>
+            </div>
+            {doctorEliminar.turnosProximos > 0 ? (
+              <p className="secretaria-aviso-eliminar">
+                Tiene {doctorEliminar.turnosProximos}{" "}
+                {doctorEliminar.turnosProximos === 1 ? "turno próximo que se va a cancelar" : "turnos próximos que se van a cancelar"}.
+                Avisale a los pacientes antes de eliminarlo.
+              </p>
+            ) : (
+              <p>No tiene turnos próximos. Los turnos pasados quedan guardados como historial.</p>
+            )}
+            <div className="modal-botones">
+              <button className="btn-cancelar" onClick={() => setDoctorEliminar(null)}>Volver</button>
+              <button className="btn-eliminar-confirm" onClick={confirmarEliminarDoctor} disabled={eliminandoDoctor}>
+                {eliminandoDoctor ? "Eliminando..." : "Eliminar doctor"}
+              </button>
             </div>
           </div>
         </div>

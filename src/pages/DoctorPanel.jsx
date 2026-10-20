@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrash, FaCalendarAlt } from "react-icons/fa";
-import { API_URL } from "../config/api";
 import "../pages/doctorPanel.css";
 
 export default function DoctorPanel() {
@@ -11,11 +10,13 @@ export default function DoctorPanel() {
   const [modalAbierto, setModalAbierto] = useState(false);
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
 
-  const [modalEliminarAbierto, setModalEliminarAbierto] = useState(false);
-  const [turnoAEliminar, setTurnoAEliminar] = useState(null);
-
   const [nuevaFecha, setNuevaFecha] = useState("");
   const [nuevoHorario, setNuevoHorario] = useState("");
+
+  // --- filtros ---
+  const [busqueda, setBusqueda] = useState("");
+  const [filtroEstado, setFiltroEstado] = useState("todos"); // todos | proximos | pasados
+  const [orden, setOrden] = useState("fecha-asc"); // fecha-asc | fecha-desc
 
   const doctorId = localStorage.getItem("doctorId");
   const doctorNombre = localStorage.getItem("doctorNombre");
@@ -26,7 +27,7 @@ export default function DoctorPanel() {
     try {
 
       const res = await fetch(
-        `${API_URL}/api/turnos/doctor/${doctorId}`
+        `http://localhost:4000/api/turnos/doctor/${doctorId}`
       );
 
       const data = await res.json();
@@ -45,28 +46,21 @@ export default function DoctorPanel() {
     }
   };
 
-  const pedirEliminarTurno = (turno) => {
-    setTurnoAEliminar(turno);
-    setModalEliminarAbierto(true);
-  };
+  const eliminarTurno = async (id) => {
 
-  const cerrarModalEliminar = () => {
-    setModalEliminarAbierto(false);
-    setTurnoAEliminar(null);
-  };
+    const confirmar = window.confirm(
+      "¿Desea eliminar este turno?"
+    );
 
-  const confirmarEliminarTurno = async () => {
-
-    if (!turnoAEliminar) return;
+    if (!confirmar) return;
 
     await fetch(
-      `${API_URL}/api/turnos/${turnoAEliminar._id}`,
+      `http://localhost:4000/api/turnos/${id}`,
       {
         method: "DELETE"
       }
     );
 
-    cerrarModalEliminar();
     cargarTurnos();
   };
 
@@ -87,7 +81,7 @@ const guardarReprogramacion = async () => {
   try {
 
     const res = await fetch(
-      `${API_URL}/api/turnos/reprogramar/${turnoSeleccionado._id}`,
+      `http://localhost:4000/api/turnos/reprogramar/${turnoSeleccionado._id}`,
       {
         method: "PUT",
         headers: {
@@ -159,18 +153,42 @@ Saludos.
     }
   }, [doctorId]);
 
-  useEffect(() => {
-    if (!modalEliminarAbierto) return;
+  // --- turnos filtrados/ordenados, se recalcula solo cuando cambia algo relevante ---
+  const turnosFiltrados = useMemo(() => {
 
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") {
-        cerrarModalEliminar();
-      }
-    };
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [modalEliminarAbierto]);
+    let resultado = turnos.filter((turno) => {
+
+      // filtro por texto (paciente, DNI o teléfono)
+      const texto = busqueda.trim().toLowerCase();
+      const coincideTexto =
+        texto === "" ||
+        turno.pacienteNombre?.toLowerCase().includes(texto) ||
+        turno.dni?.toLowerCase().includes(texto) ||
+        turno.telefono?.toLowerCase().includes(texto);
+
+      // filtro por estado temporal (próximo / pasado)
+      const fechaTurno = new Date(turno.fecha);
+      const esProximo = fechaTurno >= hoy;
+
+      const coincideEstado =
+        filtroEstado === "todos" ||
+        (filtroEstado === "proximos" && esProximo) ||
+        (filtroEstado === "pasados" && !esProximo);
+
+      return coincideTexto && coincideEstado;
+    });
+
+    resultado.sort((a, b) => {
+      const diff = new Date(a.fecha) - new Date(b.fecha);
+      return orden === "fecha-asc" ? diff : -diff;
+    });
+
+    return resultado;
+
+  }, [turnos, busqueda, filtroEstado, orden]);
 
   return (
     <div className="doctor-panel-wrapper">
@@ -203,17 +221,54 @@ Saludos.
 
         </div>
 
+        <div className="doctor-panel-filtros">
+
+          <input
+            type="text"
+            className="filtro-input"
+            placeholder="Buscar por paciente, DNI o teléfono..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+
+          <select
+            className="filtro-select"
+            value={filtroEstado}
+            onChange={(e) => setFiltroEstado(e.target.value)}
+          >
+            <option value="todos">Todos los turnos</option>
+            <option value="proximos">Próximos</option>
+            <option value="pasados">Pasados</option>
+          </select>
+
+          <select
+            className="filtro-select"
+            value={orden}
+            onChange={(e) => setOrden(e.target.value)}
+          >
+            <option value="fecha-asc">Fecha: más próxima primero</option>
+            <option value="fecha-desc">Fecha: más lejana primero</option>
+          </select>
+
+        </div>
+
         {turnos.length === 0 ? (
 
           <p style={{ textAlign: "center" }}>
             No hay turnos asignados.
           </p>
 
+        ) : turnosFiltrados.length === 0 ? (
+
+          <p style={{ textAlign: "center" }}>
+            Ningún turno coincide con la búsqueda.
+          </p>
+
         ) : (
 
           <div className="doctor-turnos-list">
 
-            {turnos.map((turno) => (
+            {turnosFiltrados.map((turno) => (
 
               <div
                 key={turno._id}
@@ -229,13 +284,6 @@ Saludos.
                 </div>
 
                 <div className="turno-info">
-
-                  {turno.especialidad && (
-                    <p>
-                      <strong>Especialidad:</strong>{" "}
-                      {turno.especialidad}
-                    </p>
-                  )}
 
                   <p>
                     <strong>Paciente:</strong>{" "}
@@ -274,7 +322,7 @@ Saludos.
                   <button
                     className="btn-delete"
                     onClick={() =>
-                      pedirEliminarTurno(turno)
+                      eliminarTurno(turno._id)
                     }
                   >
                     <FaTrash />
@@ -346,62 +394,6 @@ Guardar cambios
 </div>
 
 )}
-
-      {modalEliminarAbierto && (
-
-        <div
-          className="modal-overlay"
-          onClick={cerrarModalEliminar}
-        >
-
-          <div
-            className="modal-eliminar"
-            onClick={(e) => e.stopPropagation()}
-          >
-
-            <h2>Eliminar turno</h2>
-
-            <p>¿Seguro que querés eliminar este turno?</p>
-
-            <div className="modal-eliminar-datos">
-              <p>
-                <strong>Paciente:</strong>{" "}
-                {turnoAEliminar?.pacienteNombre}
-              </p>
-              <p>
-                <strong>Fecha:</strong>{" "}
-                {turnoAEliminar &&
-                  new Date(turnoAEliminar.fecha).toLocaleDateString()}
-              </p>
-              <p>
-                <strong>Horario:</strong>{" "}
-                {turnoAEliminar?.horario}
-              </p>
-            </div>
-
-            <div className="modal-botones">
-
-              <button
-                className="btn-cancelar"
-                onClick={cerrarModalEliminar}
-              >
-                Cancelar
-              </button>
-
-              <button
-                className="btn-eliminar-confirm"
-                onClick={confirmarEliminarTurno}
-              >
-                Eliminar
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      )}
 
     </div>
   );

@@ -6,7 +6,6 @@ import { API_URL } from "../config/api";
 import "../pages/doctorPanel.css";
 import "../pages/secretariaPanel.css";
 
-const MAX_DOCTORES = 3;
 const POR_ORDEN = "Por orden de llegada";
 
 // 0 = domingo ... 6 = sábado (igual que Date.getDay() y que data/doctores.js)
@@ -521,15 +520,10 @@ export default function SecretariaPanel() {
               </div>
             ))}
 
-            {doctores.length < MAX_DOCTORES && (
-              <button className="secretaria-doctor-card secretaria-doctor-nuevo" onClick={abrirCrearDoctor}>
-                <FaPlus className="secretaria-doctor-icono" />
-                <div className="secretaria-doctor-nombre">Agregar doctor</div>
-                <div className="secretaria-doctor-dias">
-                  {doctores.length} de {MAX_DOCTORES}
-                </div>
-              </button>
-            )}
+            <button className="secretaria-doctor-card secretaria-doctor-nuevo" onClick={abrirCrearDoctor}>
+              <FaPlus className="secretaria-doctor-icono" />
+              <div className="secretaria-doctor-nombre">Agregar doctor</div>
+            </button>
           </div>
         )}
 
